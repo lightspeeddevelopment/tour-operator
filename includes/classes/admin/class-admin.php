@@ -58,6 +58,18 @@ class Admin {
 	}
 
 	/**
+	 * Setup admin hooks.
+	 *
+	 * @since 1.1.0
+	 */
+	public function setup() {
+		add_filter( 'custom_menu_order', array( $this, 'prepare_menu_order' ) );
+		add_filter( 'manage_travel-style_custom_column', array( $this, 'fix_count_column' ), 10, 3 );
+		add_filter( 'manage_edit-travel-style_columns', array( $this, 'filter_taxonomy_columns' ), 10, 1 );
+		$this->register_pages();
+	}
+
+	/**
 	 * Setup admin pages for the plugin.
 	 *
 	 * @since 1.1.0
@@ -284,13 +296,68 @@ class Admin {
 
 	}
 
+	public function filter_taxonomy_columns( $columns ) {
+		unset( $columns['posts'] );
+		$columns['post_count'] = __( 'Count', 'tour-operator' );
+		return $columns;
+	}
+
 	/**
-	 * Setup admin hooks.
+	 * Seperates the counts for the travel styles.
 	 *
-	 * @since 1.1.0
+	 * @param string $column_html
+	 * @param string $column_name
+	 * @param int $term_id
+	 * @return string
 	 */
-	private function setup() {
-		add_filter( 'custom_menu_order', array( $this, 'prepare_menu_order' ) );
-		$this->register_pages();
+	public function fix_count_column( $column_html = '', $column_name, $term_id ) {
+		if ( 'post_count' === $column_name ) {
+			$new_html   = array();
+			$post_types = array(
+				'accommodation' => __( 'Accommodation', 'tour-operator' ),
+				'tour'          => __( 'Tours', 'tour-operator' ),
+				'destination'   => __( 'Destinations', 'tour-operator' ),
+				'review'        => __( 'Reviews', 'tour-operator' ),
+				'vehicle'       => __( 'Vehicles', 'tour-operator' ),
+				'special'       => __( 'Specials', 'tour-operator' ),
+			);
+			foreach ( $post_types as $post_type => $label ) {
+				$term_count = $this->get_term_count( $term_id, $post_type );
+				if ( false !== $term_count ) {
+					$new_html[] = $label . ': <a href="edit.php?travel-style=' . get_term_field( 'slug', $term_id, 'travel-style', 'raw' ) . '&post_type=' . $post_type . '">' . $term_count . '</a>';
+				}
+			}
+			$column_html = implode( '<br />', $new_html );
+		}
+		return $column_html;
+	}
+
+	/**
+	 * Gets the amount post posts in a term for a certain post type.
+	 *
+	 * @param int    $term_id
+	 * @param string $post_type
+	 * @return string
+	 */
+	private function get_term_count( $term_id, $post_type ) {
+		$query = new \WP_Query(
+			array(
+				'post_type'   => $post_type,
+				'post_status' => 'publish',
+				'fields'      => 'ids',
+				'tax_query'   => array(
+					array(
+						'taxonomy' => 'travel-style',
+						'terms'    => array( $term_id ),
+						'field'    => 'term_id',
+					),
+				),
+			)
+		);
+		if ( $query->have_posts() ) {
+			return $query->post_count;
+		} else {
+			return false;
+		}
 	}
 }
