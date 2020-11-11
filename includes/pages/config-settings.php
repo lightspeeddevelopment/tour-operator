@@ -9,7 +9,7 @@
  * @copyright 2017 LightSpeedDevelopment
  */
 
-//tour_operator()->settings->create_settings_page();
+// tour_operator()->settings->create_settings_page();
 
 $page = array(
 	'page_title'    => esc_html__( 'LSX Tour Operator Settings', 'tour-operator' ),

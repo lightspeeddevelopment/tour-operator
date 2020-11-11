@@ -132,7 +132,7 @@ class LSX_TO_Tour_Schema extends LSX_TO_Schema_Graph_Piece {
 			foreach ( $itinerary as $day ) {
 				$i++;
 				$schema = array(
-					'@type'    => 'Trip',
+					'@type'       => 'Trip',
 					'@id'         => \lsx\legacy\Schema_Utils::get_subtrip_schema_id( $day['title'], $this->context ),
 					'name'        => $day['title'],
 					'description' => wp_strip_all_tags( $day['description'] ),
@@ -170,7 +170,7 @@ class LSX_TO_Tour_Schema extends LSX_TO_Schema_Graph_Piece {
 						if ( '' !== $place_id ) {
 							// Here we are linking the regions to the country.
 							$contained_in = false;
-							$parent_id = wp_get_post_parent_id( $place_id );
+							$parent_id    = wp_get_post_parent_id( $place_id );
 							if ( false !== $parent_id && ! empty( $this->place_ids ) && isset( $this->place_ids[ $parent_id ] ) ) {
 								$contained_in = $this->place_ids[ $parent_id ];
 							}

@@ -125,10 +125,14 @@ abstract class Frame {
 	public function enqueue_assets( $slug ) {
 		$config = $this->configs[ $slug ];
 		if ( ! empty( $config['assets'] ) ) {
-			array_map( array(
-				tour_operator(),
-				'set_assets',
-			), array_keys( $config['assets'] ), $config['assets'] );
+			array_map(
+				array(
+					tour_operator(),
+					'set_assets',
+				),
+				array_keys( $config['assets'] ),
+				$config['assets']
+			);
 		}
 	}
 
@@ -226,10 +230,14 @@ abstract class Frame {
 	 */
 	public function setup_objects() {
 		$this->configs = $this->get_configs();
-		array_map( array(
-			$this,
-			'register_object',
-		), array_keys( $this->configs ), $this->configs );
+		array_map(
+			array(
+				$this,
+				'register_object',
+			),
+			array_keys( $this->configs ),
+			$this->configs
+		);
 		add_action( 'admin_enqueue_scripts', array( $this, 'script_style' ) );
 
 	}

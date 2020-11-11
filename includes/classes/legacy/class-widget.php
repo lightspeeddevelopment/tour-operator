@@ -147,7 +147,7 @@ class Widget extends \WP_Widget {
 			$interval = false;
 		}
 
-		//arguments
+		// arguments
 		if ( isset( $args['before_widget'] ) ) {
 			$before_widget = $args['before_widget'];
 		} else {
@@ -200,23 +200,23 @@ class Widget extends \WP_Widget {
 			}
 
 			$args = array(
-				'title'  => $title,
-				'link' => $title_link,
-				'columns' => $columns,
-				'orderby' => $orderby,
-				'order' => $order,
-				'limit' => $limit,
-				'include' => $include,
-				'parents_only' => $parents_only,
+				'title'               => $title,
+				'link'                => $title_link,
+				'columns'             => $columns,
+				'orderby'             => $orderby,
+				'order'               => $order,
+				'limit'               => $limit,
+				'include'             => $include,
+				'parents_only'        => $parents_only,
 				'disable_placeholder' => $disable_placeholder,
-				'disable_text' => $disable_text,
-				'disable_view_more' => $disable_view_more,
-				'buttons' => $buttons,
-				'button_text' => $button_text,
-				'featured' => $featured,
-				'post_type' => $post_type,
-				'class' => $class,
-				'interval' => $interval,
+				'disable_text'        => $disable_text,
+				'disable_view_more'   => $disable_view_more,
+				'buttons'             => $buttons,
+				'button_text'         => $button_text,
+				'featured'            => $featured,
+				'post_type'           => $post_type,
+				'class'               => $class,
+				'interval'            => $interval,
 			);
 
 			$args['carousel'] = $carousel;
@@ -311,10 +311,13 @@ class Widget extends \WP_Widget {
 				id="<?php echo wp_kses_post( $this->get_field_id( 'title_link' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'title_link' ) ); ?>" type="text"
 				value="<?php echo wp_kses_post( $title_link ); ?>" /> <small>
-                                  <?php 
-                esc_html_e( 'Link the widget title to
-				a URL', 'tour-operator' ); 
-?>
+								  <?php
+									esc_html_e(
+										'Link the widget title to
+				a URL',
+										'tour-operator'
+									);
+									?>
 </small>
 		</p>
 		<p>
@@ -325,11 +328,11 @@ class Widget extends \WP_Widget {
 					<?php
 					$options = array( '1', '2', '3', '4', '5', '6' );
 					foreach ( $options as $option ) {
-						$key = lcfirst( $option );
-						$selected = ($columns == $key) ? ' selected="selected"' : '';
+						$key      = lcfirst( $option );
+						$selected = ( $columns == $key ) ? ' selected="selected"' : '';
 						?>
-                        <option value="<?php echo wp_kses_post( $key ); ?>" id="<?php echo wp_kses_post( $option ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $option ); ?></option>
-                        <?php
+						<option value="<?php echo wp_kses_post( $key ); ?>" id="<?php echo wp_kses_post( $option ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $option ); ?></option>
+						<?php
 					}
 					?>
 					</select>
@@ -340,19 +343,19 @@ class Widget extends \WP_Widget {
 				id="<?php echo wp_kses_post( $this->get_field_id( 'orderby' ) ); ?>" class="widefat">
 					<?php
 					$options = array(
-						'None' => 'none',
-						'ID' => 'ID',
-						'Name' => 'name',
-						'Date' => 'date',
-						'Modified Date' => 'modified',
-						'Random' => 'rand',
+						'None'                 => 'none',
+						'ID'                   => 'ID',
+						'Name'                 => 'name',
+						'Date'                 => 'date',
+						'Modified Date'        => 'modified',
+						'Random'               => 'rand',
 						'Admin (custom order)' => 'menu_order',
 					);
 					foreach ( $options as $name => $value ) {
-						$selected = ($orderby == $value) ? ' selected="selected"' : '';
+						$selected = ( $orderby == $value ) ? ' selected="selected"' : '';
 						?>
-                        <option value="<?php echo wp_kses_post( $value ); ?>" id="<?php echo wp_kses_post( $value ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option>
-                        <?php
+						<option value="<?php echo wp_kses_post( $value ); ?>" id="<?php echo wp_kses_post( $value ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option>
+						<?php
 					}
 					?>
 					</select>
@@ -363,14 +366,14 @@ class Widget extends \WP_Widget {
 				id="<?php echo wp_kses_post( $this->get_field_id( 'order' ) ); ?>" class="widefat">
 					<?php
 					$options = array(
-						'Ascending' => 'ASC',
+						'Ascending'  => 'ASC',
 						'Descending' => 'DESC',
 					);
 					foreach ( $options as $name => $value ) {
-						$selected = ($order == $value) ? ' selected="selected"' : '';
+						$selected = ( $order == $value ) ? ' selected="selected"' : '';
 						?>
-                        <option value="<?php echo wp_kses_post( $value ); ?>" id="<?php echo wp_kses_post( $value ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option>
-                        <?php
+						<option value="<?php echo wp_kses_post( $value ); ?>" id="<?php echo wp_kses_post( $value ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option>
+						<?php
 					}
 					?>
 			</select>
@@ -453,10 +456,10 @@ class Widget extends \WP_Widget {
 				<?php
 				$options = lsx_to_get_post_types();
 				foreach ( $options as $value => $name ) {
-					$selected = ($post_type == $value) ? ' selected="selected"' : '';
+					$selected = ( $post_type == $value ) ? ' selected="selected"' : '';
 					?>
-                    <option value="<?php echo wp_kses_post( $value ); ?>" id="<?php echo wp_kses_post( $value ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option>
-                    <?php
+					<option value="<?php echo wp_kses_post( $value ); ?>" id="<?php echo wp_kses_post( $value ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option>
+					<?php
 				}
 				?>
 			</select>
@@ -476,61 +479,64 @@ class Widget extends \WP_Widget {
 	public function output( $atts ) {
 		global $columns, $disable_placeholder, $disable_text, $disable_view_more, $this_widget;
 
-		$args = shortcode_atts( array(
-			'tag' => 'h3',
-			'columns' => 1,
-			'orderby' => 'date',
-			'link'  => false,
-			'order' => 'DESC',
-			'limit' => '-1',
-			'include' => '',
-			'parents_only' => false,
-			'disable_placeholder' => false,
-			'disable_text' => false,
-			'disable_view_more' => false,
-			'buttons' => false,
-			'button_text' => false,
-			'carousel' => false,
-			'layout' => 'standard',
-			'featured' => false,
-			'post_type' => 'accommodation',
-			'interval' => '7000',
-		), $atts );
+		$args = shortcode_atts(
+			array(
+				'tag'                 => 'h3',
+				'columns'             => 1,
+				'orderby'             => 'date',
+				'link'                => false,
+				'order'               => 'DESC',
+				'limit'               => '-1',
+				'include'             => '',
+				'parents_only'        => false,
+				'disable_placeholder' => false,
+				'disable_text'        => false,
+				'disable_view_more'   => false,
+				'buttons'             => false,
+				'button_text'         => false,
+				'carousel'            => false,
+				'layout'              => 'standard',
+				'featured'            => false,
+				'post_type'           => 'accommodation',
+				'interval'            => '7000',
+			),
+			$atts
+		);
 		// @codingStandardsIgnoreStart
 		extract( $args );
 		// @codingStandardsIgnoreEnd
 
 		$output = '';
-		$paper = 'paper';
+		$paper  = 'paper';
 
 		$this->parsed_atts = $args;
 		$this_widget       = $this;
 
 		if ( 'video' == $post_type ) {
 			$post_type = 'destination';
-			$paper = '';
+			$paper     = '';
 		}
 
 		if ( '' != $include ) {
 			$include = explode( ',', $include );
-			$args = array(
-				'post_type' => $post_type,
+			$args    = array(
+				'post_type'      => $post_type,
 				'posts_per_page' => $limit,
-				'post__in' => $include,
-				'orderby' => 'post__in',
-				'order' => $order,
+				'post__in'       => $include,
+				'orderby'        => 'post__in',
+				'order'          => $order,
 			);
 		} else {
 			$args = array(
-				'post_type' => $post_type,
+				'post_type'      => $post_type,
 				'posts_per_page' => $limit,
-				'orderby' => $orderby,
-				'order' => $order,
+				'orderby'        => $orderby,
+				'order'          => $order,
 			);
 		}
 
 		if ( $featured ) {
-			$args ['meta_key'] = 'featured';
+			$args ['meta_key']   = 'featured';
 			$args ['meta_value'] = 1;
 		}
 
@@ -552,7 +558,7 @@ class Widget extends \WP_Widget {
 
 			$count = 1;
 
-			//output the opening boostrap row divs
+			// output the opening boostrap row divs
 			$this->before_while( $columns, $carousel, $post_type, $widget_query->post_count, $interval );
 
 			while ( $widget_query->have_posts() ) {
@@ -575,7 +581,7 @@ class Widget extends \WP_Widget {
 				$count++;
 			}
 
-			//output the closing boostrap row divs
+			// output the closing boostrap row divs
 			$this->after_while( $columns, $carousel, $post_type, $widget_query->post_count );
 
 			if ( false !== $buttons && false !== $link ) {
@@ -680,7 +686,7 @@ class Widget extends \WP_Widget {
 	}
 
 	/**
-	 * Redirect wordpress to the single template located in the plugin
+	 * Redirect WordPress to the single template located in the plugin
 	 *
 	 * @param    $template
 	 *

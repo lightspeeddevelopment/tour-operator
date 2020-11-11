@@ -19,11 +19,11 @@ function lsx_to_accommodation_posts() {
 	global $lsx_to_archive;
 
 	$args = array(
-		'from'      => 'post',
-		'to'        => 'accommodation',
-		'column'    => '3',
-		'before'    => '<section id="posts" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-posts' ) . '>' . esc_html__( 'Featured Posts', 'tour-operator' ) . '</h2><div id="collapse-posts" class="collapse in"><div class="collapse-inner">',
-		'after'     => '</div></div></section>',
+		'from'   => 'post',
+		'to'     => 'accommodation',
+		'column' => '3',
+		'before' => '<section id="posts" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-posts' ) . '>' . esc_html__( 'Featured Posts', 'tour-operator' ) . '</h2><div id="collapse-posts" class="collapse in"><div class="collapse-inner">',
+		'after'  => '</div></div></section>',
 	);
 
 	lsx_to_connected_panel_query( $args );
@@ -80,10 +80,10 @@ function lsx_to_has_facilities() {
 
 	if ( false === $facilities ) {
 		// It wasn't there, so regenerate the data and save the transient
-		$facilities = wp_get_object_terms( get_the_ID(), 'facility' );
-		$main_facilities = false;
+		$facilities       = wp_get_object_terms( get_the_ID(), 'facility' );
+		$main_facilities  = false;
 		$child_facilities = false;
-		$return = false;
+		$return           = false;
 
 		if ( ! empty( $facilities ) && ! is_wp_error( $facilities ) ) {
 			foreach ( $facilities as $facility ) {
@@ -114,10 +114,10 @@ function lsx_to_has_facilities() {
  * @category    accommodation
  */
 function lsx_to_accommodation_facilities( $before = '', $after = '', $echo = true ) {
-	$facilities = wp_get_object_terms( get_the_ID(), 'facility' );
-	$main_facilities = array();
+	$facilities       = wp_get_object_terms( get_the_ID(), 'facility' );
+	$main_facilities  = array();
 	$child_facilities = array();
-	$return = '';
+	$return           = '';
 
 	if ( ! empty( $facilities ) && ! is_wp_error( $facilities ) ) {
 		foreach ( $facilities as $facility ) {
@@ -128,7 +128,7 @@ function lsx_to_accommodation_facilities( $before = '', $after = '', $echo = tru
 			}
 		}
 
-		//Output in the order we want
+		// Output in the order we want
 		if ( count( $main_facilities ) > 0 && count( $child_facilities ) > 0 ) {
 			foreach ( $main_facilities as $heading ) {
 				if ( isset( $child_facilities[ $heading->term_id ] ) ) {
@@ -194,7 +194,7 @@ function lsx_to_accommodation_spoken_languages( $before = '', $after = '', $echo
 		}
 
 		$return .= '</span>';
-		$return = $before . $return . $after;
+		$return  = $before . $return . $after;
 
 		if ( $echo ) {
 			echo wp_kses_post( $return );
@@ -243,7 +243,7 @@ function lsx_to_accommodation_special_interests( $before = '', $after = '', $ech
 		}
 
 		$return .= '</span>';
-		$return = $before . $return . $after;
+		$return  = $before . $return . $after;
 
 		if ( $echo ) {
 			echo wp_kses_post( $return );
@@ -289,7 +289,7 @@ function lsx_to_accommodation_activity_friendly( $before = '', $after = '', $ech
 		}
 
 		$return .= '</span>';
-		$return = $before . $return . $after;
+		$return  = $before . $return . $after;
 
 		if ( $echo ) {
 			echo wp_kses_post( $return );

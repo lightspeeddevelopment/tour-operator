@@ -16,7 +16,7 @@
  */
 function lsx_to_is_map_enabled() {
 	$options = tour_operator()->legacy->options;
-	$return = true;
+	$return  = true;
 	if ( false !== $options && isset( $options['display']['maps_disabled'] ) && 'on' === $options['display']['maps_disabled'] ) {
 		$return = false;
 	}
@@ -36,7 +36,7 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 		global $wp_query, $post;
 		$location = get_transient( get_the_ID() . '_location' );
 		if ( false !== $location ) {
-			$map = '';
+			$map          = '';
 			$map_override = apply_filters( 'lsx_to_map_override', false );
 			if ( false === $map_override ) {
 				$zoom = 15;
@@ -44,31 +44,31 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 					$zoom = $location['zoom'];
 				}
 
-				$zoom = apply_filters( 'lsx_to_map_zoom', $zoom );
-				$map_type = 'default';
-				$parent_id = false;
+				$zoom        = apply_filters( 'lsx_to_map_zoom', $zoom );
+				$map_type    = 'default';
+				$parent_id   = false;
 				$connections = false;
 
 				if ( is_singular( 'tour' ) ) {
 					$map_type = 'itinerary';
 				} elseif ( is_post_type_archive( 'destination' ) ) {
-					$map_type = 'region_archive';
+					$map_type  = 'region_archive';
 					$parent_id = '0';
 				} elseif ( is_singular( 'destination' ) ) {
-					$map_type = 'region_archive';
+					$map_type  = 'region_archive';
 					$parent_id = get_queried_object_id();
 				} elseif ( is_tax( 'continent' ) ) {
-					$map_type = 'continent_archive';
+					$map_type  = 'continent_archive';
 					$parent_id = '0';
 				}
 
 				switch ( $map_type ) {
 					case 'itinerary':
 						$args = array(
-							'zoom' => $zoom,
-							'width' => '100%',
+							'zoom'   => $zoom,
+							'width'  => '100%',
 							'height' => '500px',
-							'type' => 'route',
+							'type'   => 'route',
 						);
 
 						if ( isset( $location['kml'] ) ) {
@@ -80,23 +80,23 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 						break;
 
 					case 'region_archive':
-						$args = array();
+						$args        = array();
 						$connections = array();
 						if ( false !== lsx_to_item_has_children( $parent_id, 'destination' ) ) {
-							$region_args = array(
-								'post_type' => 'destination',
-								'post_status' => 'publish',
-								'nopagin' => true,
+							$region_args                = array(
+								'post_type'      => 'destination',
+								'post_status'    => 'publish',
+								'nopagin'        => true,
 								'posts_per_page' => '-1',
-								'fields' => 'ids',
+								'fields'         => 'ids',
 							);
 							$region_args['post_parent'] = $parent_id;
 
 							if ( true === lsx_to_display_fustion_tables() ) {
-								$region_args['post_parent'] = 0;
-								$args['fusion_tables'] = true;
-								$args['fusion_tables_colour_border'] = lsx_to_fustion_tables_attr( 'colour_border', '#000000' );
-								$args['fusion_tables_width_border'] = lsx_to_fustion_tables_attr( 'width_border', '2' );
+								$region_args['post_parent']              = 0;
+								$args['fusion_tables']                   = true;
+								$args['fusion_tables_colour_border']     = lsx_to_fustion_tables_attr( 'colour_border', '#000000' );
+								$args['fusion_tables_width_border']      = lsx_to_fustion_tables_attr( 'width_border', '2' );
 								$args['fusion_tables_colour_background'] = lsx_to_fustion_tables_attr( 'colour_background', '#000000' );
 							}
 							$regions = new WP_Query( $region_args );
@@ -118,21 +118,21 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 
 						if ( false !== $connections && '' !== $connections && ! empty( $connections ) ) {
 							$args['connections'] = $connections;
-							$args['type'] = 'cluster';
+							$args['type']        = 'cluster';
 
 							if ( '0' === $parent_id && ! lsx_to_has_destination_banner_cluster() ) {
 								$args['disable_cluster_js'] = true;
 							}
 						} else {
 							$args['long'] = $location['long'];
-							$args['lat'] = $location['lat'];
+							$args['lat']  = $location['lat'];
 						}
 
 						// Check to see if the zoom is disabled.
 						$manual_zoom = get_post_meta( $parent_id, 'disable_auto_zoom', true );
 						if ( false !== $manual_zoom && '' !== $manual_zoom ) {
 							$args['disable_auto_zoom'] = true;
-							$args['zoom'] = $manual_zoom;
+							$args['zoom']              = $manual_zoom;
 						} else {
 							$args['zoom'] = $zoom;
 						}
@@ -143,12 +143,12 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 						$args = array();
 
 						$country_args = array(
-							'post_type' => 'destination',
-							'post_status' => 'publish',
-							'nopagin' => true,
+							'post_type'      => 'destination',
+							'post_status'    => 'publish',
+							'nopagin'        => true,
 							'posts_per_page' => '-1',
-							'fields' => 'ids',
-							'post_parent' => $parent_id,
+							'fields'         => 'ids',
+							'post_parent'    => $parent_id,
 						);
 
 						if ( isset( get_queried_object()->term_id ) ) {
@@ -162,9 +162,9 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 						}
 
 						if ( true === lsx_to_display_fustion_tables() ) {
-							$args['fusion_tables'] = true;
-							$args['fusion_tables_colour_border'] = lsx_to_fustion_tables_attr( 'colour_border', '#000000' );
-							$args['fusion_tables_width_border'] = lsx_to_fustion_tables_attr( 'width_border', '2' );
+							$args['fusion_tables']                   = true;
+							$args['fusion_tables_colour_border']     = lsx_to_fustion_tables_attr( 'colour_border', '#000000' );
+							$args['fusion_tables_width_border']      = lsx_to_fustion_tables_attr( 'width_border', '2' );
 							$args['fusion_tables_colour_background'] = lsx_to_fustion_tables_attr( 'colour_background', '#000000' );
 						}
 
@@ -182,7 +182,7 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 
 						if ( false !== $connections && '' !== $connections ) {
 							$args['connections'] = $connections;
-							$args['type'] = 'cluster';
+							$args['type']        = 'cluster';
 							if ( '0' === $parent_id && ! lsx_to_has_destination_banner_cluster() ) {
 								$args['disable_cluster_js'] = true;
 							}
@@ -192,10 +192,10 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 
 					default:
 						$args = array(
-							'long' => $location['long'],
-							'lat' => $location['lat'],
-							'zoom' => $zoom,
-							'width' => '100%',
+							'long'   => $location['long'],
+							'lat'    => $location['lat'],
+							'zoom'   => $zoom,
+							'width'  => '100%',
 							'height' => '500px',
 						);
 
@@ -363,12 +363,12 @@ if ( ! function_exists( 'lsx_to_has_map' ) ) {
 					$kml = wp_get_attachment_url( $file_id );
 				}
 
-				$location = false;
+				$location                = false;
 				$accommodation_connected = lsx_to_get_tour_itinerary_ids();
 				$accommodation_connected = apply_filters( 'lsx_to_maps_tour_connections', $accommodation_connected );
 				if ( is_array( $accommodation_connected ) && ! empty( $accommodation_connected ) ) {
 					$location = array(
-						'lat' => true,
+						'lat'         => true,
 						'connections' => $accommodation_connected,
 					);
 				}
@@ -393,7 +393,7 @@ if ( ! function_exists( 'lsx_to_has_map' ) ) {
 			} else {
 				return false;
 			}
-		} else if ( is_array( $location ) && ( ( isset( $location['lat'] ) && '' !== $location['lat'] ) || ( isset( $location['kml'] ) && '' !== $location['kml'] ) ) ) {
+		} elseif ( is_array( $location ) && ( ( isset( $location['lat'] ) && '' !== $location['lat'] ) || ( isset( $location['kml'] ) && '' !== $location['kml'] ) ) ) {
 			return true;
 		} else {
 			return false;

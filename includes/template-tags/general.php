@@ -47,7 +47,7 @@ function lsx_to_archive_class( $classes = array() ) {
 function lsx_to_widget_class( $type = '', $return = false ) {
 	global $columns;
 
-	$cols = 'col-xs-12 col-sm-';
+	$cols  = 'col-xs-12 col-sm-';
 	$cols .= '5' == $columns ? '15' : 12 / $columns;
 
 	$class = 'lsx-to-widget-item-wrap lsx-' . $type . ' ' . $cols;
@@ -141,8 +141,8 @@ function lsx_to_collapsible_attributes( $target = false, $post_type = false, $re
 }
 
 function lsx_to_collapsible_attributes_not_post( $target = false, $return = true ) {
-	//$output = 'data-toggle="collapse" data-target="#' . $target . '"';
-	$output = 'data-toggle=';
+	// $output = 'data-toggle="collapse" data-target="#' . $target . '"';
+	$output  = 'data-toggle=';
 	$output .= 'collapse';
 	$output .= ' ';
 	$output .= 'data-target=';
@@ -161,17 +161,17 @@ function lsx_to_collapsible_attributes_not_post( $target = false, $return = true
  */
 function lsx_to_global_header() {
 	$default_size = 'sm';
-	$size = apply_filters( 'lsx_bootstrap_column_size', $default_size );
+	$size         = apply_filters( 'lsx_bootstrap_column_size', $default_size );
 	?>
 	<div class="archive-header-wrapper col-<?php echo esc_attr( $size ); ?>-12">
 		<header class="archive-header">
 			<h1 class="archive-title">
 				<?php
-					if ( is_archive() ) {
-						the_archive_title();
-					} else {
-						the_title();
-					}
+				if ( is_archive() ) {
+					the_archive_title();
+				} else {
+					the_title();
+				}
 				?>
 			</h1>
 
@@ -180,7 +180,7 @@ function lsx_to_global_header() {
 
 		<?php lsx_global_header_inner_bottom(); ?>
 	</div>
-<?php
+	<?php
 }
 
 /**
@@ -296,7 +296,7 @@ function lsx_to_sharing() {
  */
 function lsx_to_envira_videos( $before = '', $after = '', $echo = true ) {
 	$envira_video = get_post_meta( get_the_ID(), 'envira_video', true );
-	$return = false;
+	$return       = false;
 
 	if ( function_exists( 'envira_gallery' ) && ! empty( $envira_video ) ) {
 		// Envira Gallery
@@ -324,35 +324,35 @@ function lsx_to_envira_videos( $before = '', $after = '', $echo = true ) {
  * @category    helper
  */
 function lsx_to_safari_brands( $before = '', $after = '', $echo = true ) {
-	$args = array(
-		'name' => 'Home',
-		'id' => 'sidebar-home',
-		'description' => '',
-		'class' => '',
+	$args          = array(
+		'name'          => 'Home',
+		'id'            => 'sidebar-home',
+		'description'   => '',
+		'class'         => '',
 		'before_widget' => '<aside id="lsx_to_taxonomy_widget-6" class="widget lsx-widget">',
-		'after_widget' => '</aside>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-		'widget_id' => 'lsx_to_taxonomy_widget-6',
-		'widget_name' => 'LSX Taxonomies',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+		'widget_id'     => 'lsx_to_taxonomy_widget-6',
+		'widget_name'   => 'LSX Taxonomies',
 	);
-	$instance = array(
-		'title' => '',
-		'title_link' => '',
-		'columns' => '4',
-		'orderby' => 'menu_order',
-		'order' => 'ASC',
-		'limit' => '100',
-		'include' => '',
-		'size' => '100',
-		'buttons' => '',
+	$instance      = array(
+		'title'       => '',
+		'title_link'  => '',
+		'columns'     => '4',
+		'orderby'     => 'menu_order',
+		'order'       => 'ASC',
+		'limit'       => '100',
+		'include'     => '',
+		'size'        => '100',
+		'buttons'     => '',
 		'button_text' => '',
-		'responsive' => '1',
-		'carousel' => '1',
-		'taxonomy' => 'accommodation-brand',
-		'class' => '',
-		'interval' => '7000',
-		'indicators' => '1',
+		'responsive'  => '1',
+		'carousel'    => '1',
+		'taxonomy'    => 'accommodation-brand',
+		'class'       => '',
+		'interval'    => '7000',
+		'indicators'  => '1',
 	);
 	$safari_brands = new \lsx\legacy\Taxonomy_Widget();
 	ob_start();
@@ -374,35 +374,35 @@ function lsx_to_safari_brands( $before = '', $after = '', $echo = true ) {
  * @category    helper
  */
 function lsx_to_travel_styles( $before = '', $after = '', $echo = true ) {
-	$args = array(
-		'name' => 'Home',
-		'id' => 'sidebar-home',
-		'description' => '',
-		'class' => '',
+	$args          = array(
+		'name'          => 'Home',
+		'id'            => 'sidebar-home',
+		'description'   => '',
+		'class'         => '',
 		'before_widget' => '<aside id="lsx_to_taxonomy_widget-6" class="widget lsx-widget">',
-		'after_widget' => '</aside>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-		'widget_id' => 'lsx_to_taxonomy_widget-6',
-		'widget_name' => 'LSX Taxonomies',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+		'widget_id'     => 'lsx_to_taxonomy_widget-6',
+		'widget_name'   => 'LSX Taxonomies',
 	);
-	$instance = array(
-		'title' => '',
-		'title_link' => '',
-		'columns' => '3',
-		'orderby' => 'rand',
-		'order' => 'DESC',
-		'limit' => '100',
-		'include' => '',
-		'size' => '100',
-		'buttons' => '',
+	$instance      = array(
+		'title'       => '',
+		'title_link'  => '',
+		'columns'     => '3',
+		'orderby'     => 'rand',
+		'order'       => 'DESC',
+		'limit'       => '100',
+		'include'     => '',
+		'size'        => '100',
+		'buttons'     => '',
 		'button_text' => '',
-		'responsive' => '1',
-		'carousel' => '1',
-		'taxonomy' => 'travel-style',
-		'class' => '',
-		'interval' => '7000',
-		'indicators' => '1',
+		'responsive'  => '1',
+		'carousel'    => '1',
+		'taxonomy'    => 'travel-style',
+		'class'       => '',
+		'interval'    => '7000',
+		'indicators'  => '1',
 	);
 	$travel_styles = new \lsx\legacy\Taxonomy_Widget();
 	ob_start();
@@ -556,17 +556,19 @@ function lsx_to_enquire_modal( $cta_text = '', $before = '', $after = '', $echo 
 	}
 
 	if ( false !== $form_id ) {
-	?>
+		?>
 	<div class="lsx-to-enquire-form">
 		<a href="<?php echo esc_url( $link ); ?>" class="btn cta-btn" 
-                            <?php 
-        if ( false === $disable_modal ) {
-?>
+							<?php
+							if ( false === $disable_modal ) {
+								?>
 data-toggle="modal" data-target="#lsx-enquire-modal"<?php } ?> ><?php echo esc_html( $cta_text ); ?></a>
 
 		<?php
-			if ( false === $disable_modal ) {
-				add_action( 'wp_footer', function( $arg ) use ( $form_id, $cta_text ) {
+		if ( false === $disable_modal ) {
+			add_action(
+				'wp_footer',
+				function( $arg ) use ( $form_id, $cta_text ) {
 					?>
 					<div class="lsx-modal modal fade" id="lsx-enquire-modal" tabindex="-1" role="dialog">
 						<div class="modal-dialog">
@@ -576,30 +578,31 @@ data-toggle="modal" data-target="#lsx-enquire-modal"<?php } ?> ><?php echo esc_h
 									<h4 class="modal-title"><?php echo esc_html( $cta_text ); ?></h4>
 								</div>
 								<div class="modal-body">
-									<?php
-										if ( class_exists( 'WPForms' ) ) {
-											echo do_shortcode( '[wpforms id="' . $form_id . '"]' );
-										} elseif ( class_exists( 'Ninja_Forms' ) ) {
-											echo do_shortcode( '[ninja_form id="' . $form_id . '"]' );
-										} elseif ( class_exists( 'GFForms' ) ) {
-											echo do_shortcode( '[gravityform id="' . $form_id . '" title="false" description="false" ajax="true"]' );
-										} elseif ( class_exists( 'Caldera_Forms_Forms' ) ) {
-											echo do_shortcode( '[caldera_form id="' . $form_id . '"]' );
-										} else {
-											echo wp_kses_post( apply_filters( 'the_content', $form_id ) );
-										}
-									?>
+								<?php
+								if ( class_exists( 'WPForms' ) ) {
+									echo do_shortcode( '[wpforms id="' . $form_id . '"]' );
+								} elseif ( class_exists( 'Ninja_Forms' ) ) {
+									echo do_shortcode( '[ninja_form id="' . $form_id . '"]' );
+								} elseif ( class_exists( 'GFForms' ) ) {
+									echo do_shortcode( '[gravityform id="' . $form_id . '" title="false" description="false" ajax="true"]' );
+								} elseif ( class_exists( 'Caldera_Forms_Forms' ) ) {
+									echo do_shortcode( '[caldera_form id="' . $form_id . '"]' );
+								} else {
+									echo wp_kses_post( apply_filters( 'the_content', $form_id ) );
+								}
+								?>
 								</div>
 							</div>
 						</div>
 					</div>
-					<?php
-				} );
-			}
+						<?php
+				}
+			);
+		}
 		?>
 	</div>
-<?php 
-} }
+		<?php
+	} }
 
 if ( ! function_exists( 'lsx_to_gallery' ) ) {
 	/**
@@ -619,7 +622,7 @@ if ( ! function_exists( 'lsx_to_gallery' ) ) {
 		$defaults = array(
 			'gallery_ids' => array(),
 		);
-		$args           = wp_parse_args( $args, $defaults );
+		$args     = wp_parse_args( $args, $defaults );
 		if ( ! empty( $args['gallery_ids'] ) ) {
 			if ( ! is_array( $args['gallery_ids'] ) ) {
 				$args['gallery_ids'] = explode( ',', '', $args['gallery_ids'] );
@@ -641,16 +644,18 @@ if ( ! function_exists( 'lsx_to_gallery' ) ) {
 					// Envira Gallery - Dynamic
 					ob_start();
 
-					envira_dynamic( array(
-						'id' => 'custom' . sanitize_title( get_the_title( get_the_ID() ) ) . '-' . date( 'H-i' ),
-						'images' => implode( ',', $gallery_ids ),
-					) );
+					envira_dynamic(
+						array(
+							'id'     => 'custom' . sanitize_title( get_the_title( get_the_ID() ) ) . '-' . date( 'H-i' ),
+							'images' => implode( ',', $gallery_ids ),
+						)
+					);
 
 					$return = ob_get_clean();
 				} else {
 					// WordPress Gallery
 					$columns = 3;
-					$return = do_shortcode( '[gallery ids="' . implode( ',', $gallery_ids ) . '" size="large" columns="' . $columns . '" link="file"]' );
+					$return  = do_shortcode( '[gallery ids="' . implode( ',', $gallery_ids ) . '" size="large" columns="' . $columns . '" link="file"]' );
 				}
 			}
 

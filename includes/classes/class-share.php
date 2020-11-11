@@ -88,13 +88,21 @@ class Share {
 	 * @since 1.1.0
 	 */
 	public function __construct() {
-		add_action( 'admin_enqueue_scripts', array(
-			$this,
-			'render_active_styles',
-		), 100 );
-		add_action( 'wp_print_styles', array(
-			$this,
-			'render_active_styles',
-		), 100 );
+		add_action(
+			'admin_enqueue_scripts',
+			array(
+				$this,
+				'render_active_styles',
+			),
+			100
+		);
+		add_action(
+			'wp_print_styles',
+			array(
+				$this,
+				'render_active_styles',
+			),
+			100
+		);
 	}
 }

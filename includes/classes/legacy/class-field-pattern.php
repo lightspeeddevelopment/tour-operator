@@ -34,13 +34,16 @@ class Field_Pattern {
 	 * Returns the fields needed for a videos, repeatable box.
 	 */
 	public static function price() {
-		return apply_filters( 'lsx_to_price_field_pattern', array(
+		return apply_filters(
+			'lsx_to_price_field_pattern',
 			array(
-				'id' => 'price',
-				'name' => 'Price',
-				'type' => 'text',
-			),
-		) );
+				array(
+					'id'   => 'price',
+					'name' => 'Price',
+					'type' => 'text',
+				),
+			)
+		);
 	}
 
 }

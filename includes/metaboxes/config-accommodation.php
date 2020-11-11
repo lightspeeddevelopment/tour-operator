@@ -93,7 +93,7 @@ if ( ! isset( tour_operator()->options['display']['maps_disable'] ) && empty( to
 		'name' => esc_html__( 'Location', 'tour-operator' ),
 		'type' => 'title',
 	);
-	$google_api_key = '';
+	$google_api_key      = '';
 	if ( isset( tour_operator()->options['api']['googlemaps_key'] ) && ! empty( tour_operator()->options['api']['googlemaps_key'] ) ) {
 		$google_api_key = tour_operator()->options['api']['googlemaps_key'];
 	}

@@ -36,7 +36,7 @@ global $disable_placeholder, $disable_text;
 		} elseif ( $has_single ) {
 			?>
 			<p><a href="<?php echo esc_url( $permalink ); ?>" class="moretag"><?php esc_html_e( 'View more', 'tour-operator' ); ?></a></p>
-		<?php
+			<?php
 		}
 
 		?>

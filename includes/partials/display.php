@@ -1,5 +1,5 @@
 <div class="uix-field-wrapper">
-    <?php $class = 'active'; ?>
+	<?php $class = 'active'; ?>
 
 	<ul class="ui-tab-nav">
 		<?php if ( class_exists( 'LSX_Banners' ) ) { ?>

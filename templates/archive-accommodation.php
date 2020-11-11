@@ -22,10 +22,10 @@ get_header(); ?>
 
 				<div class="row lsx-to-archive-items lsx-to-archive-template-<?php echo esc_attr( tour_operator()->archive_layout ); ?> lsx-to-archive-template-image-<?php echo esc_attr( tour_operator()->archive_list_layout_image_style ); ?>">
 
-					<?php 
-                    while ( have_posts() ) :
-the_post(); 
-?>
+					<?php
+					while ( have_posts() ) :
+						the_post();
+						?>
 
 						<div class="<?php echo esc_attr( lsx_to_archive_class( 'lsx-to-archive-item' ) ); ?>">
 							<?php lsx_to_content( 'content', 'accommodation' ); ?>
@@ -51,7 +51,7 @@ the_post();
 
 	<?php lsx_content_wrap_after(); ?>
 
-<?php //get_sidebar(); ?>
+<?php // get_sidebar(); ?>
 
-<?php 
+<?php
 get_footer();

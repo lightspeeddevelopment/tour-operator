@@ -44,7 +44,7 @@ class LSX_TO_Accommodation_Schema extends LSX_TO_Schema_Graph_Piece {
 		);
 
 		if ( $this->context->site_represents_reference ) {
-			$data['brand']    = $this->context->site_represents_reference;
+			$data['brand'] = $this->context->site_represents_reference;
 		}
 
 		$wetu_ref = get_post_meta( $this->context->id, 'lsx_wetu_id', true );

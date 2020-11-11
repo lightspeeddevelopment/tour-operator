@@ -2,10 +2,10 @@
 /**
  * Template Tags
  *
- * @package   		tour-operator
- * @subpackage 		template-tags
- * @category 		helpers
- * @license   		GPL3
+ * @package         tour-operator
+ * @subpackage      template-tags
+ * @category        helpers
+ * @license         GPL3
  */
 
 /* ================== CONDITIONAL ================== */
@@ -13,12 +13,12 @@
 /**
  * Checks if the current post_type is disabled
  *
- * @param		$post_type | string
- * @return		boolean
+ * @param       $post_type | string
+ * @return      boolean
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	class
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    class
  */
 function lsx_to_is_single_disabled( $post_type = false, $post_id = false ) {
 	return lsx_to_is_helper( $post_type, $post_id, 'disable_single' );
@@ -27,12 +27,12 @@ function lsx_to_is_single_disabled( $post_type = false, $post_id = false ) {
 /**
  * Checks if the current post_type is disabled
  *
- * @param		$post_type | string
- * @return		boolean
+ * @param       $post_type | string
+ * @return      boolean
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	class
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    class
  */
 function lsx_to_is_collapsible( $post_type = false, $post_id = false ) {
 	return lsx_to_is_helper( $post_type, $post_id, 'disable_collapsible' );
@@ -41,14 +41,14 @@ function lsx_to_is_collapsible( $post_type = false, $post_id = false ) {
 /**
  * A helper functions that checks the post type for a specific option
  *
- * @param		$post_type | string
+ * @param       $post_type | string
  * @param       $post_id string | boolean
  * @param       $meta_key string | boolean
- * @return		boolean
+ * @return      boolean
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	class
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    class
  */
 function lsx_to_is_helper( $post_type = false, $post_id = false, $meta_key = false ) {
 	$tour_operator = tour_operator();
@@ -82,9 +82,9 @@ function lsx_to_is_helper( $post_type = false, $post_id = false, $meta_key = fal
 /**
  * Output the envira gallery in the
  *
- * @package 	lsx-framework
- * @subpackage	hook
- * @category 	modal
+ * @package     lsx-framework
+ * @subpackage  hook
+ * @category    modal
  */
 function lsx_to_enable_envira_banner() {
 	$tour_operator = tour_operator();
@@ -99,26 +99,26 @@ function lsx_to_enable_envira_banner() {
 /**
  * Checks weather or not the conencted tours should display.
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	accommodation
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    accommodation
  */
 function lsx_to_accommodation_display_connected_tours() {
 	$tour_operator = tour_operator();
-	$return = false;
+	$return        = false;
 
 	if ( isset( $tour_operator->options['accommodation']['display_connected_tours'] ) && 'on' === $tour_operator->options['accommodation']['display_connected_tours'] ) {
 		$return = true;
 	}
 
 	return $return;
- }
+}
 
 /**
  * Check if the current item has child pages or if its a parent ""
  *
- * @param	$post_id string
- * @param	$post_type string
+ * @param   $post_id string
+ * @param   $post_type string
  */
 function lsx_to_item_has_children( $post_id = false, $post_type = false ) {
 	global $wpdb;
@@ -137,7 +137,8 @@ function lsx_to_item_has_children( $post_id = false, $post_type = false ) {
 			WHERE (post_type = %s AND post_status = 'publish')
 			AND post_parent = %d
 			LIMIT 1",
-			$post_type,$post_id
+			$post_type,
+			$post_id
 		)
 	);
 
@@ -154,15 +155,15 @@ function lsx_to_item_has_children( $post_id = false, $post_type = false ) {
 /**
  * Return post_type section title from the settings page
  *
- * @param		$post_type | string
- * @return		string
+ * @param       $post_type | string
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	class
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    class
  */
 function lsx_to_get_post_type_section_title( $post_type = false, $section = '', $default = '' ) {
-	$section_title = ( ! empty( $section )) ? ($section . '_section_title') : 'section_title';
+	$section_title = ( ! empty( $section ) ) ? ( $section . '_section_title' ) : 'section_title';
 	$tour_operator = tour_operator();
 
 	if ( false === $post_type ) {
@@ -180,7 +181,7 @@ function lsx_to_get_post_type_section_title( $post_type = false, $section = '', 
 /**
  * Checks if the current term has a thumbnail
  *
- * @param	$term_id
+ * @param   $term_id
  */
 if ( ! function_exists( 'lsx_to_has_term_thumbnail' ) ) {
 	function lsx_to_has_term_thumbnail( $term_id = false ) {
@@ -199,25 +200,25 @@ if ( ! function_exists( 'lsx_to_has_term_thumbnail' ) ) {
 /**
  * Outputs the current terms thumbnail
  *
- * @param	$term_id string
+ * @param   $term_id string
  */
 if ( ! function_exists( 'lsx_to_term_thumbnail' ) ) {
 	function lsx_to_term_thumbnail( $term_id = false, $size = 'lsx-thumbnail-single' ) {
 		if ( false !== $term_id ) {
-			echo wp_kses_post( lsx_to_get_term_thumbnail( $term_id,$size ) );
+			echo wp_kses_post( lsx_to_get_term_thumbnail( $term_id, $size ) );
 		}
 	}
 }
 /**
  * Outputs the current terms thumbnail
  *
- * @param	$term_id string
+ * @param   $term_id string
  */
 if ( ! function_exists( 'lsx_to_get_term_thumbnail' ) ) {
 	function lsx_to_get_term_thumbnail( $term_id = false, $size = 'lsx-thumbnail-single' ) {
 		if ( false !== $term_id ) {
 			$term_thumbnail_id = get_term_meta( $term_id, 'thumbnail', true );
-			$img               = wp_get_attachment_image_src( $term_thumbnail_id,$size );
+			$img               = wp_get_attachment_image_src( $term_thumbnail_id, $size );
 			$image_url         = $img[0];
 			$img               = '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="' . esc_url( $image_url ) . '" />';
 			$img               = apply_filters( 'lsx_lazyload_slider_images', $img, $term_thumbnail_id, $size, false, $image_url );
@@ -227,14 +228,15 @@ if ( ! function_exists( 'lsx_to_get_term_thumbnail' ) ) {
 }
 /**
  * Gets the current connected team member panel
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	tour
+ * @param       $before | string
+ * @param       $after  | string
+ * @param       $echo   | boolean
+ * @return      string
+ *
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    tour
  */
 function lsx_to_term_tagline( $term_id = false, $before = '', $after = '', $echo = true ) {
 	if ( false !== $term_id ) {
@@ -257,13 +259,13 @@ function lsx_to_term_tagline( $term_id = false, $before = '', $after = '', $echo
 /**
  * Checks if a custom field query exists, and set a transient for it, so we dont have to query it again later.
  *
- * @param		$meta_key	| string
- * @param		$single		| boolean
- * @return		string
+ * @param       $meta_key   | string
+ * @param       $single     | boolean
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	helper
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    helper
  */
 function lsx_to_has_custom_field_query( $meta_key = false, $id = false, $is_tax = false ) {
 	if ( false !== $meta_key ) {
@@ -291,19 +293,19 @@ function lsx_to_has_custom_field_query( $meta_key = false, $id = false, $is_tax 
 /**
  * Queries a basic custom field
  *
- * @param		$meta_key	| string
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
+ * @param       $meta_key   | string
+ * @param       $before | string
+ * @param       $after  | string
+ * @param       $echo   | boolean
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	helper
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    helper
  */
 function lsx_to_custom_field_query( $meta_key = false, $before = '', $after = '', $echo = false, $post_id = false ) {
 	if ( false !== $meta_key ) {
-		//Check to see if we already have a transient set for this.
+		// Check to see if we already have a transient set for this.
 		// TODO Need to move this to enclose the entire function and change to a !==,  that way you have to set up the custom field via the lsx_to_has_{custom_field} function
 		if ( false === $post_id ) {
 			$post_id = get_the_ID();
@@ -344,17 +346,17 @@ function lsx_to_custom_field_query( $meta_key = false, $before = '', $after = ''
 /**
  * Gets the list of connections requested
  *
- * @param		$from	| string
- * @param		$to		| string
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @param		$parent | boolean
- * @return		string
+ * @param       $from   | string
+ * @param       $to     | string
+ * @param       $before | string
+ * @param       $after  | string
+ * @param       $echo   | boolean
+ * @param       $parent | boolean
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	helper
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    helper
  */
 function lsx_to_connected_items_query( $from = false, $to = false, $before = '', $after = '', $echo = false, $parents = false, $extra = false ) {
 	if ( post_type_exists( $from ) && post_type_exists( $to ) ) {
@@ -385,27 +387,27 @@ function lsx_to_connected_items_query( $from = false, $to = false, $before = '',
 /**
  * Gets the list of connections items, and displays them using the the specified content part.
  *
- * @param		$args				| array
- * @return		string
+ * @param       $args               | array
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	helper
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    helper
  */
 function lsx_to_connected_panel_query( $args = false ) {
 	global $lsx_to_archive, $columns;
 
 	if ( false !== $args && is_array( $args ) ) {
 		$defaults = array(
-			'from'			=> false,
-			'to'			=> false,
-			'content_part'	=> false,
-			'id'			=> false,
-			'column'		=> false,
-			'before'		=> '',
-			'after'			=> '',
-			'featured'      => false,
-			'orderby'       => false,
+			'from'         => false,
+			'to'           => false,
+			'content_part' => false,
+			'id'           => false,
+			'column'       => false,
+			'before'       => '',
+			'after'        => '',
+			'featured'     => false,
+			'orderby'      => false,
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -418,9 +420,9 @@ function lsx_to_connected_panel_query( $args = false ) {
 
 		if ( false !== $items_array && is_array( $items_array ) && ! empty( $items_array ) ) {
 			$items_query_args = array(
-				'post_type'		=> $args['from'],
-				'post_status'	=> 'publish',
-				'post__in'		=> $items_array,
+				'post_type'   => $args['from'],
+				'post_status' => 'publish',
+				'post__in'    => $items_array,
 			);
 
 			if ( false !== $args['orderby'] ) {
@@ -431,8 +433,8 @@ function lsx_to_connected_panel_query( $args = false ) {
 				$items_query_args['meta_query'] = array(
 					'relation' => 'OR',
 					array(
-						'key' => 'featured',
-						'value' => true,
+						'key'     => 'featured',
+						'value'   => true,
 						'compare' => '=',
 					),
 				);
@@ -455,9 +457,9 @@ function lsx_to_connected_panel_query( $args = false ) {
 				$lsx_to_archive = 1;
 
 				$carousel_id = rand( 20, 20000 );
-				$columns = intval( esc_attr( $args['column'] ) );
-				$interval = '6000';
-				$post_type = $args['content_part'];
+				$columns     = intval( esc_attr( $args['column'] ) );
+				$interval    = '6000';
+				$post_type   = $args['content_part'];
 
 				echo wp_kses_post( $args['before'] );
 
@@ -474,7 +476,7 @@ function lsx_to_connected_panel_query( $args = false ) {
 					global $disable_placeholder, $disable_text;
 
 					$disable_placeholder = apply_filters( 'lsx_to_widget_disable_placeholder', false, $args['to'], $post_type );
-					$disable_text = apply_filters( 'lsx_to_widget_disable_text', false, $args['to'], $post_type );
+					$disable_text        = apply_filters( 'lsx_to_widget_disable_text', false, $args['to'], $post_type );
 
 					echo '<div class="lsx-to-widget-item-wrap lsx-' . esc_attr( $post_type ) . '">';
 					lsx_to_content( 'content-widget', $args['content_part'] );
@@ -505,16 +507,16 @@ function lsx_to_connected_panel_query( $args = false ) {
 /**
  * Returns items tagged in the same terms for the taxonomy you select.
  *
- * @param		$taxonomy	| string
- * @return		string
+ * @param       $taxonomy   | string
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	helper
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    helper
  */
 function lsx_to_related_items( $taxonomy = false, $before = '', $after = '', $echo = true, $post_type = false ) {
 	if ( false !== $taxonomy ) {
-		$return = false;
+		$return  = false;
 		$filters = array();
 
 		if ( false === $post_type ) {
@@ -526,15 +528,15 @@ function lsx_to_related_items( $taxonomy = false, $before = '', $after = '', $ec
 		if ( is_array( $taxonomy ) ) {
 			$filters['post__in'] = $taxonomy;
 		} else {
-			//Get the settings from the customizer options
+			// Get the settings from the customizer options
 			$filters['posts_per_page'] = 15;
-			//Exclude the current post
+			// Exclude the current post
 			$filters['post__not_in'] = array( get_the_ID() );
-			//if its set to related then we need to check by the type.
+			// if its set to related then we need to check by the type.
 			$filters['orderby'] = 'rand';
-			$terms = wp_get_object_terms( get_the_ID(), $taxonomy );
+			$terms              = wp_get_object_terms( get_the_ID(), $taxonomy );
 
-			//only allow relation by 1 property type term
+			// only allow relation by 1 property type term
 			if ( is_array( $terms ) && ! empty( $terms ) ) {
 				$filters['tax_query'] = array(
 					array(
@@ -555,17 +557,17 @@ function lsx_to_related_items( $taxonomy = false, $before = '', $after = '', $ec
 		if ( $related_query->have_posts() ) :
 			global $wp_query, $columns;
 
-			$wp_query->is_single = 0;
-			$wp_query->is_singular = 0;
+			$wp_query->is_single            = 0;
+			$wp_query->is_singular          = 0;
 			$wp_query->is_post_type_archive = 1;
-			$columns = 3;
+			$columns                        = 3;
 
 			ob_start();
 
-			//Setting some carousel variables
+			// Setting some carousel variables
 			$carousel_id = rand( 20, 20000 );
-			$interval = '6000';
-			$post_type = get_post_type();
+			$interval    = '6000';
+			$post_type   = get_post_type();
 
 			echo '<div class="slider-container lsx-to-widget-items">';
 			echo '<div id="slider-' . esc_attr( $carousel_id ) . '" class="lsx-to-slider">';
@@ -578,7 +580,7 @@ function lsx_to_related_items( $taxonomy = false, $before = '', $after = '', $ec
 				global $disable_placeholder, $disable_text;
 
 				$disable_placeholder = apply_filters( 'lsx_to_widget_disable_placeholder', false, $post_type, false, $taxonomy );
-				$disable_text = apply_filters( 'lsx_to_widget_disable_text', false, $post_type, false, $taxonomy );
+				$disable_text        = apply_filters( 'lsx_to_widget_disable_text', false, $post_type, false, $taxonomy );
 
 				echo '<div class="lsx-to-widget-item-wrap lsx-' . esc_attr( $post_type ) . '">';
 				lsx_to_content( 'content-widget', $post_type );
@@ -592,8 +594,8 @@ function lsx_to_related_items( $taxonomy = false, $before = '', $after = '', $ec
 
 			$return = ob_get_clean();
 
-			$wp_query->is_single = 1;
-			$wp_query->is_singular = 1;
+			$wp_query->is_single            = 1;
+			$wp_query->is_singular          = 1;
 			$wp_query->is_post_type_archive = 0;
 
 			wp_reset_postdata();
@@ -612,14 +614,14 @@ function lsx_to_related_items( $taxonomy = false, $before = '', $after = '', $ec
 /**
  * Outputs a list of the ids you give it
  *
- * @param		$connected_ids | array() | the array of ids
- * @param		$type | string | the post type
- * @param		$link | boolean | link the items or not
- * @param		$seperator | string | what to seperate the items by.
+ * @param       $connected_ids | array() | the array of ids
+ * @param       $type | string | the post type
+ * @param       $link | boolean | link the items or not
+ * @param       $seperator | string | what to seperate the items by.
  *
- * @package 	lsx-framework
- * @subpackage	template-tags
- * @category 	helper
+ * @package     lsx-framework
+ * @subpackage  template-tags
+ * @category    helper
  */
 function lsx_to_connected_list( $connected_ids = false, $type = false, $link = true, $seperator = ', ', $parent = false ) {
 	if ( false === $connected_ids || false === $type ) {
@@ -630,9 +632,9 @@ function lsx_to_connected_list( $connected_ids = false, $type = false, $link = t
 		}
 
 		$filters = array(
-			'post_type' => $type,
+			'post_type'   => $type,
 			'post_status' => 'publish',
-			'post__in'	=> $connected_ids,
+			'post__in'    => $connected_ids,
 		);
 
 		if ( false !== $parent ) {
@@ -644,7 +646,7 @@ function lsx_to_connected_list( $connected_ids = false, $type = false, $link = t
 		if ( is_array( $connected_query ) ) {
 			global $post;
 
-			$post_original = $post;
+			$post_original  = $post;
 			$connected_list = array();
 
 			foreach ( $connected_query as $cp ) {
@@ -653,13 +655,13 @@ function lsx_to_connected_list( $connected_ids = false, $type = false, $link = t
 
 				if ( $link ) {
 					$has_single = ! lsx_to_is_single_disabled( $type, $cp->ID );
-					$permalink = '';
+					$permalink  = '';
 
 					if ( $has_single ) {
 						$permalink = get_the_permalink( $cp->ID );
 					} elseif ( is_search() || ! is_post_type_archive( $type ) ) {
 						$has_single = true;
-						$permalink = get_post_type_archive_link( $type ) . '#' . $type . '-' . $cp->post_name;
+						$permalink  = get_post_type_archive_link( $type ) . '#' . $type . '-' . $cp->post_name;
 					}
 
 					$html .= '<a href="' . $permalink . '">';
@@ -671,7 +673,7 @@ function lsx_to_connected_list( $connected_ids = false, $type = false, $link = t
 					$html .= '</a>';
 				}
 
-				$html = apply_filters( 'lsx_to_connected_list_item', $html, $cp->ID, $link );
+				$html             = apply_filters( 'lsx_to_connected_list_item', $html, $cp->ID, $link );
 				$connected_list[] = $html;
 			}
 
@@ -691,7 +693,7 @@ function lsx_to_connected_list( $connected_ids = false, $type = false, $link = t
  */
 function to_country_data( $value = '', $label = true ) {
 	$return = '';
-	$data = include LSX_TO_PATH . '/includes/constants/country-codes.php';
+	$data   = include LSX_TO_PATH . '/includes/constants/country-codes.php';
 
 	if ( true === $label ) {
 		if ( isset( $data[ $value ] ) ) {
@@ -714,7 +716,7 @@ function to_country_data( $value = '', $label = true ) {
  * @return string
  */
 function to_continent_code( $country_code = '' ) {
-	$return = '';
+	$return     = '';
 	$continents = include LSX_TO_PATH . '/includes/constants/continents-codes.php';
 	if ( isset( $continents[ $country_code ] ) ) {
 		$return = $continents[ $country_code ];
@@ -752,7 +754,7 @@ function to_continent_label( $continent_code = '' ) {
  * @return string
  */
 function to_continent_region_label( $country_code = '' ) {
-	$return = '';
+	$return               = '';
 	$intermediate_regions = include LSX_TO_PATH . '/includes/constants/continent-intermediate-regions.php';
 	if ( isset( $intermediate_regions[ $country_code ] ) ) {
 		$return = $intermediate_regions[ $country_code ];

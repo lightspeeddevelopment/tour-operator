@@ -7,9 +7,9 @@
  * @license     GPL3
  */
 
-$current_theme = wp_get_theme();
+$current_theme    = wp_get_theme();
 $current_template = $current_theme->get_template();
-$theme_name = $current_theme->get( 'Name' );
+$theme_name       = $current_theme->get( 'Name' );
 
 if ( 'lsx' !== $current_template && 'LSX' !== $theme_name ) {
 	/**
@@ -105,12 +105,12 @@ if ( 'lsx' !== $current_template && 'LSX' !== $theme_name ) {
 			$img    = $img[0];
 		} else {
 			$srcset = true;
-			$img = wp_get_attachment_image_srcset( $post_thumbnail_id, $size );
+			$img    = wp_get_attachment_image_srcset( $post_thumbnail_id, $size );
 
 			if ( false === $img ) {
 				$srcset = false;
-				$img = wp_get_attachment_image_src( $post_thumbnail_id, $size );
-				$img = $img[0];
+				$img    = wp_get_attachment_image_src( $post_thumbnail_id, $size );
+				$img    = $img[0];
 			}
 		}
 

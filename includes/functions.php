@@ -585,11 +585,11 @@ function lsx_to_accommodation_units() {
 							<div class="<?php echo esc_attr( $type_key ); ?>s-wrapper rooms-wrapper row">
 								<?php while ( lsx_to_accommodation_room_loop() ) { ?>
 
-									<?php 
-                                    if ( ! lsx_to_accommodation_room_loop_item( $type_key ) ) {
+									<?php
+									if ( ! lsx_to_accommodation_room_loop_item( $type_key ) ) {
 										continue;
-									} 
-                                    ?>
+									}
+									?>
 
 									<div class="col-xs-12 col-md-6">
 										<article class="rooms-content">
@@ -597,14 +597,19 @@ function lsx_to_accommodation_units() {
 												<div class="rooms-thumbnail-wrap">
 													<?php
 														$images = $rooms->item_thumbnails();
-														$count = 0;
+														$count  = 0;
 
-														foreach ( $images as $thumbnail_wide_src => $thumbnail_single_src ) {
-															$count++;
-															?>
-                                                            <a href="<?php echo esc_url( $thumbnail_single_src ); ?>" class="rooms-thumbnail <?php if ( $count > 1 ) echo 'hidden'; ?>" style="background-image:url('<?php echo esc_url( $thumbnail_wide_src ); ?>')"></a>
-                                                            <?php
-														}
+													foreach ( $images as $thumbnail_wide_src => $thumbnail_single_src ) {
+														$count++;
+														?>
+															<a href="<?php echo esc_url( $thumbnail_single_src ); ?>" class="rooms-thumbnail 
+																				<?php
+																				if ( $count > 1 ) {
+																					echo 'hidden';}
+																				?>
+															" style="background-image:url('<?php echo esc_url( $thumbnail_wide_src ); ?>')"></a>
+															<?php
+													}
 													?>
 												</div>
 											<?php } ?>
@@ -616,16 +621,16 @@ function lsx_to_accommodation_units() {
 										</article>
 									</div>
 
-								<?php 
-                                }
-								lsx_to_accommodation_reset_units_loop(); 
-                                ?>
+									<?php
+								}
+								lsx_to_accommodation_reset_units_loop();
+								?>
 							</div>
 						</div>
 					</div>
 				</section>
-			<?php 
-            }
+				<?php
+			}
 		}
 	}
 }

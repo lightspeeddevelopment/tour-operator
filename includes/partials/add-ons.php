@@ -1,14 +1,14 @@
 <?php
 	$to_essentials_bundle_link = esc_url( 'https://www.lsdev.biz/product/tour-operator-essentials-bundle/' );
-	$to_complete_bundle_link = esc_url( 'https://www.lsdev.biz/product/tour-operator-complete-bundle/' );
-	$tour_operator_link = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/' );
-	$team_link          = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/team/' );
-	$activities_link    = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/activities/' );
-	$reviews_link       = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/reviews/' );
-	$specials_link      = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/specials/' );
-	$search_link        = esc_url( 'https://www.lsdev.biz/lsx/extensions/search/' );
-	$vehicles_link      = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/vehicles/' );
-	$wetu_importer_link = esc_url( 'https://www.lsdev.biz/lsx/extensions/wetu-importer/' );
+	$to_complete_bundle_link   = esc_url( 'https://www.lsdev.biz/product/tour-operator-complete-bundle/' );
+	$tour_operator_link        = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/' );
+	$team_link                 = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/team/' );
+	$activities_link           = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/activities/' );
+	$reviews_link              = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/reviews/' );
+	$specials_link             = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/specials/' );
+	$search_link               = esc_url( 'https://www.lsdev.biz/lsx/extensions/search/' );
+	$vehicles_link             = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/vehicles/' );
+	$wetu_importer_link        = esc_url( 'https://www.lsdev.biz/lsx/extensions/wetu-importer/' );
 ?>
 
 <div class="wrap about-wrap">

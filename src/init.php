@@ -64,7 +64,8 @@ function to_block_block_assets() {
 	 * @since 1.16.0
 	 */
 	register_block_type(
-		'tour-operator/block-post-types', array(
+		'tour-operator/block-post-types',
+		array(
 			// Enqueue blocks.style.build.css on both frontend & backend.
 			'style'         => 'to_block-style-css',
 			// Enqueue blocks.build.js in the editor only.

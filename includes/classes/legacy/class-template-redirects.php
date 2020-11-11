@@ -56,7 +56,7 @@ class Template_Redirects {
 	}
 
 	/**
-	 * Redirect wordpress to the archive template located in the plugin
+	 * Redirect WordPress to the archive template located in the plugin
 	 *
 	 * @param    $template
 	 *
@@ -83,7 +83,7 @@ class Template_Redirects {
 	}
 
 	/**
-	 * Redirect wordpress to the single template located in the plugin
+	 * Redirect WordPress to the single template located in the plugin
 	 *
 	 * @param    $template
 	 *
@@ -102,7 +102,7 @@ class Template_Redirects {
 	}
 
 	/**
-	 * Redirect wordpress to the taxonomy located in the plugin
+	 * Redirect WordPress to the taxonomy located in the plugin
 	 *
 	 * @param    $template
 	 *
@@ -121,7 +121,7 @@ class Template_Redirects {
 	}
 
 	/**
-	 * Redirect wordpress to the single template located in the plugin
+	 * Redirect WordPress to the single template located in the plugin
 	 *
 	 * @param    $template
 	 *
@@ -129,7 +129,7 @@ class Template_Redirects {
 	 */
 	public function content_part( $slug, $name = null ) {
 		$template = array();
-		$name = (string) $name;
+		$name     = (string) $name;
 
 		if ( '' !== $name ) {
 			$template = "{$slug}-{$name}.php";
@@ -138,7 +138,7 @@ class Template_Redirects {
 		}
 
 		$original_name = $template;
-		$path = apply_filters( 'lsx_to_content_path', '', get_post_type() );
+		$path          = apply_filters( 'lsx_to_content_path', '', get_post_type() );
 
 		if ( 'modal' === $name || 'map-marker' === $name ) {
 			$path = $this->plugin_path;
@@ -164,7 +164,7 @@ class Template_Redirects {
 	}
 
 	/**
-	 * Redirect wordpress to the widget template located in the plugin
+	 * Redirect WordPress to the widget template located in the plugin
 	 *
 	 * @param    $path
 	 * @param    $post_type
@@ -180,7 +180,7 @@ class Template_Redirects {
 	}
 
 	/**
-	 * Redirect wordpress to the single template located in the plugin
+	 * Redirect WordPress to the single template located in the plugin
 	 *
 	 * @param    $path
 	 * @param    $post_type

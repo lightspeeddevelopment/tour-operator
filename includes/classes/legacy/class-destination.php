@@ -120,7 +120,7 @@ class Destination {
 						$query->set( 'meta_key', 'sticky_order' );
 						$query->set( 'orderby', 'meta_value_num' );
 						$query->set( 'order', 'DESC' );
-					    break;
+						break;
 
 					case 'sticky-first':
 						$query->set( 'meta_key', 'sticky_order' );
@@ -128,24 +128,24 @@ class Destination {
 							'orderby',
 							array(
 								'meta_value_num' => 'DESC',
-								'menu_order' => 'ASC',
+								'menu_order'     => 'ASC',
 							)
 						);
-					    break;
+						break;
 
 					case 'sticky-last':
 						$query->set( 'meta_key', 'sticky_order' );
 						$query->set(
 							'orderby',
 							array(
-								'menu_order' => 'DESC',
+								'menu_order'     => 'DESC',
 								'meta_value_num' => 'ASC',
 							)
 						);
-					    break;
+						break;
 
 					default:
-					    break;
+						break;
 				}
 			}
 		}
@@ -184,12 +184,12 @@ class Destination {
 
 				the_terms( get_the_ID(), 'travel-style', '<span class="' . $meta_class . 'style"><span class="lsx-to-meta-data-key">' . esc_html__( 'Travel Style', 'tour-operator' ) . ':</span> ', ', ', '</span>' );
 
-				if ( function_exists( 'lsx_to_connected_activities' ) ) {
-					lsx_to_connected_activities( '<span class="' . $meta_class . 'activities"><span class="lsx-to-meta-data-key">' . esc_html__( 'Activities', 'tour-operator' ) . ':</span> ', '</span>' );
-				}
+			if ( function_exists( 'lsx_to_connected_activities' ) ) {
+				lsx_to_connected_activities( '<span class="' . $meta_class . 'activities"><span class="lsx-to-meta-data-key">' . esc_html__( 'Activities', 'tour-operator' ) . ':</span> ', '</span>' );
+			}
 			?>
-		<?php 
-        }
+			<?php
+		}
 	}
 
 	/**
@@ -289,7 +289,7 @@ class Destination {
 	 * Tests for the Gallery and returns a link for the section
 	 */
 	public function get_gallery_link() {
-		$gallery_ids = get_post_meta( get_the_ID(), 'gallery', false );
+		$gallery_ids    = get_post_meta( get_the_ID(), 'gallery', false );
 		$envira_gallery = get_post_meta( get_the_ID(), 'envira_gallery', true );
 
 		if ( ( ! empty( $gallery_ids ) && is_array( $gallery_ids ) ) || ( function_exists( 'envira_gallery' ) && ! empty( $envira_gallery ) && false === lsx_to_enable_envira_banner() ) ) {
@@ -337,14 +337,16 @@ class Destination {
 		$connected_tours = get_post_meta( get_the_ID(), 'tour_to_destination', false );
 
 		if ( post_type_exists( 'tour' ) && is_array( $connected_tours ) && ! empty( $connected_tours ) ) {
-			$connected_tours = new \WP_Query( array(
-				'post_type' => 'tour',
-				'post__in' => $connected_tours,
-				'post_status' => 'publish',
-				'nopagin' => true,
-				'posts_per_page' => '-1',
-				'fields' => 'ids',
-			) );
+			$connected_tours = new \WP_Query(
+				array(
+					'post_type'      => 'tour',
+					'post__in'       => $connected_tours,
+					'post_status'    => 'publish',
+					'nopagin'        => true,
+					'posts_per_page' => '-1',
+					'fields'         => 'ids',
+				)
+			);
 
 			$connected_tours = $connected_tours->posts;
 
@@ -361,14 +363,16 @@ class Destination {
 		$connected_accommodation = get_post_meta( get_the_ID(), 'accommodation_to_destination', false );
 
 		if ( post_type_exists( 'accommodation' ) && is_array( $connected_accommodation ) && ! empty( $connected_accommodation ) ) {
-			$connected_accommodation = new \WP_Query( array(
-				'post_type' => 'accommodation',
-				'post__in' => $connected_accommodation,
-				'post_status' => 'publish',
-				'nopagin' => true,
-				'posts_per_page' => '-1',
-				'fields' => 'ids',
-			) );
+			$connected_accommodation = new \WP_Query(
+				array(
+					'post_type'      => 'accommodation',
+					'post__in'       => $connected_accommodation,
+					'post_status'    => 'publish',
+					'nopagin'        => true,
+					'posts_per_page' => '-1',
+					'fields'         => 'ids',
+				)
+			);
 
 			$connected_accommodation = $connected_accommodation->posts;
 
@@ -385,14 +389,16 @@ class Destination {
 		$connected_activities = get_post_meta( get_the_ID(), 'activity_to_destination', false );
 
 		if ( post_type_exists( 'activity' ) && is_array( $connected_activities ) && ! empty( $connected_activities ) ) {
-			$connected_activities = new \WP_Query( array(
-				'post_type' => 'activity',
-				'post__in' => $connected_activities,
-				'post_status' => 'publish',
-				'nopagin' => true,
-				'posts_per_page' => '-1',
-				'fields' => 'ids',
-			) );
+			$connected_activities = new \WP_Query(
+				array(
+					'post_type'      => 'activity',
+					'post__in'       => $connected_activities,
+					'post_status'    => 'publish',
+					'nopagin'        => true,
+					'posts_per_page' => '-1',
+					'fields'         => 'ids',
+				)
+			);
 
 			$connected_activities = $connected_activities->posts;
 
@@ -409,14 +415,16 @@ class Destination {
 		$connected_specials = get_post_meta( get_the_ID(), 'special_to_destination', false );
 
 		if ( post_type_exists( 'special' ) && is_array( $connected_specials ) && ! empty( $connected_specials ) ) {
-			$connected_specials = new \WP_Query( array(
-				'post_type' => 'special',
-				'post__in' => $connected_specials,
-				'post_status' => 'publish',
-				'nopagin' => true,
-				'posts_per_page' => '-1',
-				'fields' => 'ids',
-			) );
+			$connected_specials = new \WP_Query(
+				array(
+					'post_type'      => 'special',
+					'post__in'       => $connected_specials,
+					'post_status'    => 'publish',
+					'nopagin'        => true,
+					'posts_per_page' => '-1',
+					'fields'         => 'ids',
+				)
+			);
 
 			$connected_specials = $connected_specials->posts;
 
@@ -433,14 +441,16 @@ class Destination {
 		$connected_reviews = get_post_meta( get_the_ID(), 'review_to_destination', false );
 
 		if ( post_type_exists( 'review' ) && is_array( $connected_reviews ) && ! empty( $connected_reviews ) ) {
-			$connected_reviews = new \WP_Query( array(
-				'post_type' => 'review',
-				'post__in' => $connected_reviews,
-				'post_status' => 'publish',
-				'nopagin' => true,
-				'posts_per_page' => '-1',
-				'fields' => 'ids',
-			) );
+			$connected_reviews = new \WP_Query(
+				array(
+					'post_type'      => 'review',
+					'post__in'       => $connected_reviews,
+					'post_status'    => 'publish',
+					'nopagin'        => true,
+					'posts_per_page' => '-1',
+					'fields'         => 'ids',
+				)
+			);
 
 			$connected_reviews = $connected_reviews->posts;
 
@@ -488,14 +498,16 @@ class Destination {
 		$connected_posts = get_post_meta( get_the_ID(), 'post_to_destination', false );
 
 		if ( is_array( $connected_posts ) && ! empty( $connected_posts ) ) {
-			$connected_posts = new \WP_Query( array(
-				'post_type' => 'post',
-				'post__in' => $connected_posts,
-				'post_status' => 'publish',
-				'nopagin' => true,
-				'posts_per_page' => '-1',
-				'fields' => 'ids',
-			) );
+			$connected_posts = new \WP_Query(
+				array(
+					'post_type'      => 'post',
+					'post__in'       => $connected_posts,
+					'post_status'    => 'publish',
+					'nopagin'        => true,
+					'posts_per_page' => '-1',
+					'fields'         => 'ids',
+				)
+			);
 
 			$connected_posts = $connected_posts->posts;
 
@@ -515,7 +527,7 @@ class Destination {
 	 */
 	public function general_settings() {
 		if ( class_exists( 'LSX_Banners' ) ) {
-		?>
+			?>
 		<tr class="form-field -wrap">
 			<th scope="row">
 				<label for="enable_banner_map"><?php esc_html_e( 'Display the map in the banner', 'tour-operator' ); ?></label>
@@ -533,7 +545,7 @@ class Destination {
 			</td>
 		</tr>
 
-		<?php
+			<?php
 		}
 	}
 }

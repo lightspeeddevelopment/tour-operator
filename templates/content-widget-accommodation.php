@@ -25,14 +25,14 @@ if ( $has_single ) {
 
 	<?php if ( empty( $disable_placeholder ) ) { ?>
 		<div class="lsx-to-widget-thumb">
-			<?php 
-            if ( $has_single ) {
-?>
+			<?php
+			if ( $has_single ) {
+				?>
 <a href="<?php echo esc_url( $permalink ); ?>"><?php } ?>
 				<?php lsx_thumbnail( 'lsx-thumbnail-wide' ); ?>
-			<?php 
-            if ( $has_single ) {
-?>
+			<?php
+			if ( $has_single ) {
+				?>
 </a><?php } ?>
 		</div>
 	<?php } ?>
@@ -42,20 +42,20 @@ if ( $has_single ) {
 		<?php lsx_widget_entry_content_top(); ?>
 
 		<h4 class="lsx-to-widget-title text-center">
-			<?php 
-            if ( $has_single ) {
-?>
+			<?php
+			if ( $has_single ) {
+				?>
 <a href="<?php echo esc_url( $permalink ); ?>"><?php } ?>
 				<?php the_title(); ?>
-			<?php 
-            if ( $has_single ) {
-?>
+			<?php
+			if ( $has_single ) {
+				?>
 </a><?php } ?>
 		</h4>
 
 		<?php
 			// if ( empty( $disable_text ) ) {
-			// 	lsx_to_tagline( '<p class="lsx-to-widget-tagline text-center">', '</p>' );
+			// lsx_to_tagline( '<p class="lsx-to-widget-tagline text-center">', '</p>' );
 			// }
 		?>
 

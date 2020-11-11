@@ -25,9 +25,9 @@ if ( ! function_exists( 'lsx_to_videos' ) ) {
 	function lsx_to_videos( $before = '', $after = '', $echo = true ) {
 		global $columns;
 
-		$videos = get_post_meta( get_the_ID(), 'videos', false );
+		$videos       = get_post_meta( get_the_ID(), 'videos', false );
 		$envira_video = get_post_meta( get_the_ID(), 'envira_video', true );
-		$return = false;
+		$return       = false;
 
 		if ( ( ! empty( $videos ) && is_array( $videos ) ) || ( function_exists( 'envira_gallery' ) && ! empty( $envira_video ) ) ) {
 			if ( function_exists( 'envira_gallery' ) && ! empty( $envira_video ) ) {
@@ -38,10 +38,10 @@ if ( ! function_exists( 'lsx_to_videos' ) ) {
 			} else {
 				// Custom Gallery
 				$carousel_id = rand( 20, 20000 );
-				$columns = 3;
-				$interval = 'false';
-				$post_type = 'video';
-				$content = '';
+				$columns     = 3;
+				$interval    = 'false';
+				$post_type   = 'video';
+				$content     = '';
 
 				$content .= '<div class="slider-container lsx-to-widget-items">';
 				$content .= '<div id="slider-' . esc_attr( $carousel_id ) . '" class="lsx-to-slider">';
@@ -56,12 +56,15 @@ if ( ! function_exists( 'lsx_to_videos' ) ) {
 						$content .= '<div class="lsx-to-widget-thumb embed-responsive embed-responsive-16by9">';
 
 						$embed_key = 'to_videos_embed_' . sanitize_title( $video['url'] );
-						$embed = get_transient( $embed_key );
+						$embed     = get_transient( $embed_key );
 
 						if ( false === $embed ) {
-							$embed = wp_oembed_get( $video['url'], array(
-								'class' => 'embed-responsive-item',
-							) );
+							$embed = wp_oembed_get(
+								$video['url'],
+								array(
+									'class' => 'embed-responsive-item',
+								)
+							);
 
 							if ( ! empty( $embed ) ) {
 								set_transient( $embed_key, $embed, ( 24 * 60 * 60 ) );
@@ -101,7 +104,7 @@ if ( ! function_exists( 'lsx_to_videos' ) ) {
 			}
 
 			$protocol = is_ssl() ? 'https' : 'http';
-			$return = preg_replace( '/href="\/\//i', 'href="' . $protocol . '://', $return );
+			$return   = preg_replace( '/href="\/\//i', 'href="' . $protocol . '://', $return );
 
 			$return = $before . $return . $after;
 

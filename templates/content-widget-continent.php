@@ -19,26 +19,26 @@ if ( empty( $disable_single_link ) ) {
 	<?php if ( empty( $disable_placeholder ) ) { ?>
 		<?php if ( lsx_to_has_term_thumbnail( $term->term_id ) ) : ?>
 			<div class="lsx-to-widget-thumb">
-				<?php 
-                if ( ! empty( $title_link ) ) {
-?>
+				<?php
+				if ( ! empty( $title_link ) ) {
+					?>
 <a href="<?php echo esc_url( $title_link ); ?>"><?php } ?>
 					<?php lsx_to_term_thumbnail( $term->term_id, 'lsx-thumbnail-wide' ); ?>
-				<?php 
-                if ( ! empty( $title_link ) ) {
-?>
+				<?php
+				if ( ! empty( $title_link ) ) {
+					?>
 </a><?php } ?>
 			</div>
 		<?php else : ?>
 			<div class="lsx-to-widget-thumb">
-				<?php 
-                if ( ! empty( $title_link ) ) {
-?>
+				<?php
+				if ( ! empty( $title_link ) ) {
+					?>
 <a href="<?php echo esc_url( $title_link ); ?>"><?php } ?>
 					<img alt="Placeholder" class="attachment-responsive wp-post-image lsx-responsive" src="<?php echo esc_attr( \lsx\legacy\Placeholders::placeholder_url( null, 'destination', 'lsx-thumbnail-wide' ) ); ?>">
-				<?php 
-                if ( ! empty( $title_link ) ) {
-?>
+				<?php
+				if ( ! empty( $title_link ) ) {
+					?>
 </a><?php } ?>
 			</div>
 		<?php endif; ?>
@@ -46,20 +46,20 @@ if ( empty( $disable_single_link ) ) {
 
 	<div class="lsx-to-widget-content">
 		<h4 class="lsx-to-widget-title text-center">
-			<?php 
-            if ( ! empty( $title_link ) ) {
-?>
+			<?php
+			if ( ! empty( $title_link ) ) {
+				?>
 <a href="<?php echo esc_url( $title_link ); ?>"><?php } ?>
 				<?php echo esc_html( apply_filters( 'the_title', $term->name ) ); ?>
-			<?php 
-            if ( ! empty( $title_link ) ) {
-?>
+			<?php
+			if ( ! empty( $title_link ) ) {
+				?>
 </a><?php } ?>
 		</h4>
 
 		<?php
 			// if ( empty( $disable_text ) ) {
-			// 	lsx_to_term_tagline( $term->term_id, '<p class="lsx-to-widget-tagline text-center">', '</p>' );
+			// lsx_to_term_tagline( $term->term_id, '<p class="lsx-to-widget-tagline text-center">', '</p>' );
 			// }
 		?>
 

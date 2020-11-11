@@ -36,7 +36,10 @@ require_once LSX_TO_PATH . 'tour-operator-bootstrap.php';
 require_once LSX_TO_PATH . 'src/init.php';
 
 // Register activation hook.
-register_activation_hook( LSX_TO_CORE, array(
-	'Tour_Operator',
-	'register_activation_hook',
-) );
+register_activation_hook(
+	LSX_TO_CORE,
+	array(
+		'Tour_Operator',
+		'register_activation_hook',
+	)
+);

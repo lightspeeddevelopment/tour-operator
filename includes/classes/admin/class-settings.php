@@ -87,7 +87,7 @@ class Settings {
 			}
 
 			$pages = $this->settings_page_array();
-			$uix = \lsx_to\ui\uix::get_instance( 'lsx-to' );
+			$uix   = \lsx_to\ui\uix::get_instance( 'lsx-to' );
 			$uix->register_pages( $pages );
 
 			foreach ( tour_operator()->legacy->post_types as $post_type => $label ) {
@@ -124,7 +124,7 @@ class Settings {
 	 * Display the welcome page
 	 */
 	public function welcome_page() {
-		include( LSX_TO_PATH . 'includes/partials/welcome.php' );
+		include LSX_TO_PATH . 'includes/partials/welcome.php';
 	}
 
 	/**
@@ -144,12 +144,12 @@ class Settings {
 				}
 
 				$tabs[ $index ] = array(
-					'page_title'        => '',
-					'page_description'  => '',
-					'menu_title'        => $title,
-					'template'          => apply_filters( 'lsx_to_settings_path', LSX_TO_PATH, $index ) . 'includes/partials/' . $index . '.php',
-					'default'           => false,
-					'disabled'          => $disabled,
+					'page_title'       => '',
+					'page_description' => '',
+					'menu_title'       => $title,
+					'template'         => apply_filters( 'lsx_to_settings_path', LSX_TO_PATH, $index ) . 'includes/partials/' . $index . '.php',
+					'default'          => false,
+					'disabled'         => $disabled,
 				);
 			}
 
@@ -167,42 +167,42 @@ class Settings {
 
 		$tabs = array( // tabs array are for setting the tab / section templates
 			// each array element is a tab with the key as the slug that will be the saved object property
-			'general'       => array(
-				'page_title'        => '',
-				'page_description'  => '',
-				'menu_title'        => esc_html__( 'General', 'tour-operator' ),
-				'template'          => LSX_TO_PATH . 'includes/partials/general.php',
-				'default'           => true,
+			'general' => array(
+				'page_title'       => '',
+				'page_description' => '',
+				'menu_title'       => esc_html__( 'General', 'tour-operator' ),
+				'template'         => LSX_TO_PATH . 'includes/partials/general.php',
+				'default'          => true,
 			),
 		);
 
 		$tabs['display'] = array(
-			'page_title'        => '',
-			'page_description'  => '',
-			'menu_title'        => esc_html__( 'Display', 'tour-operator' ),
-			'template'          => LSX_TO_PATH . 'includes/partials/display.php',
-			'default'           => false,
+			'page_title'       => '',
+			'page_description' => '',
+			'menu_title'       => esc_html__( 'Display', 'tour-operator' ),
+			'template'         => LSX_TO_PATH . 'includes/partials/display.php',
+			'default'          => false,
 		);
 
-		//if(in_array('LSX_Banners', get_declared_classes())){
+		// if(in_array('LSX_Banners', get_declared_classes())){
 		$tabs['api'] = array(
-			'page_title'        => '',
-			'page_description'  => '',
-			'menu_title'        => esc_html__( 'API', 'tour-operator' ),
-			'template'          => LSX_TO_PATH . 'includes/partials/api.php',
-			'default'           => false,
+			'page_title'       => '',
+			'page_description' => '',
+			'menu_title'       => esc_html__( 'API', 'tour-operator' ),
+			'template'         => LSX_TO_PATH . 'includes/partials/api.php',
+			'default'          => false,
 		);
-		//}
+		// }
 
 		$posts_page = get_option( 'page_for_posts', false );
 
 		if ( false === $posts_page ) {
 			$tabs['post'] = array(
-				'page_title'        => esc_html__( 'Posts', 'tour-operator' ),
-				'page_description'  => '',
-				'menu_title'        => esc_html__( 'Posts', 'tour-operator' ),
-				'template'          => LSX_TO_PATH . 'includes/partials/post.php',
-				'default'           => false,
+				'page_title'       => esc_html__( 'Posts', 'tour-operator' ),
+				'page_description' => '',
+				'menu_title'       => esc_html__( 'Posts', 'tour-operator' ),
+				'template'         => LSX_TO_PATH . 'includes/partials/post.php',
+				'default'          => false,
 			);
 		}
 
@@ -214,7 +214,7 @@ class Settings {
 		}
 
 		return array(
-			'settings'  => array(                                                         // this is the settings array. The key is the page slug
+			'settings' => array(                                                         // this is the settings array. The key is the page slug
 				'page_title'  => esc_html__( 'LSX Tour Operator Settings', 'tour-operator' ),                                                  // title of the page
 				'menu_title'  => esc_html__( 'Settings', 'tour-operator' ),                                                  // title seen on the menu link
 				'capability'  => 'manage_options',                                              // required capability to access page
@@ -242,8 +242,8 @@ class Settings {
 						<small><?php esc_html_e( 'Move the gallery on a page into the banner.', 'tour-operator' ); ?></small>
 					</td>
 				</tr>
-			<?php 
-            }
+				<?php
+			}
 
 			$this->modal_setting();
 		}
@@ -279,7 +279,7 @@ class Settings {
 	 */
 	public function dashboard_tab_content( $tab = 'general' ) {
 		if ( 'general' !== $tab ) {
-return false;}
+			return false;}
 		?>
 		<?php if ( ! class_exists( '\lsx\currencies\classes\Currencies' ) ) { ?>
 			<tr class="form-field-wrap">
@@ -308,7 +308,7 @@ return false;}
 			</th>
 			<?php
 			if ( true === tour_operator()->legacy->show_default_form() ) {
-				$forms = tour_operator()->legacy->get_activated_forms();
+				$forms         = tour_operator()->legacy->get_activated_forms();
 				$selected_form = false;
 
 				if ( isset( $this->options['general'] ) && isset( $this->options['general']['enquiry'] ) ) {
@@ -318,22 +318,22 @@ return false;}
 				<td>
 					<select value="{{enquiry}}" name="enquiry">
 						<?php
-						if ( false !== $forms && '' !== $forms ) { 
-                        ?>
+						if ( false !== $forms && '' !== $forms ) {
+							?>
 							<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}><?php esc_html_e( 'Select a form', 'tour-operator' ); ?></option>
 							<?php
-							foreach ( $forms as $form_id => $form_data ) { 
-                            ?>
+							foreach ( $forms as $form_id => $form_data ) {
+								?>
 								<option value="<?php echo esc_attr( $form_id ); ?>" 
-                                                          <?php 
-                                if ( $selected_form == $form_id ) {
-echo esc_attr( 'selected="selected"' ); } 
-?>
+														  <?php
+															if ( $selected_form == $form_id ) {
+																echo esc_attr( 'selected="selected"' ); }
+															?>
   ><?php echo esc_html( $form_data ); ?></option>
 								<?php
 							}
-						} else { 
-                        ?>
+						} else {
+							?>
 							<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}><?php esc_html_e( 'You have no form available', 'tour-operator' ); ?></option>
 						<?php } ?>
 					</select>
@@ -424,7 +424,7 @@ echo esc_attr( 'selected="selected"' ); }
 			</th>
 			<?php
 			if ( true === tour_operator()->legacy->show_default_form() ) {
-				$forms = tour_operator()->legacy->get_activated_forms();
+				$forms         = tour_operator()->legacy->get_activated_forms();
 				$selected_form = false;
 
 				if ( isset( $this->options[ $post_type ] ) && isset( $this->options[ $post_type ]['enquiry'] ) ) {
@@ -438,13 +438,13 @@ echo esc_attr( 'selected="selected"' ); }
 							?>
 							<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}><?php esc_html_e( 'Select a form', 'tour-operator' ); ?></option>
 							<?php
-							foreach ( $forms as $form_id => $form_data ) { 
-                            ?>
+							foreach ( $forms as $form_id => $form_data ) {
+								?>
 								<option value="<?php echo esc_attr( $form_id ); ?>" 
-                                                          <?php 
-                                if ( $selected_form == $form_id ) {
-echo esc_attr( 'selected="selected"' ); } 
-?>
+														  <?php
+															if ( $selected_form == $form_id ) {
+																echo esc_attr( 'selected="selected"' ); }
+															?>
   ><?php echo esc_html( $form_data ); ?></option>
 								<?php
 							}
@@ -617,8 +617,8 @@ echo esc_attr( 'selected="selected"' ); }
 				<textarea class="description" name="description" rows="10">{{#if description}}{{{description}}}{{/if}}</textarea>
 			</td>
 		</tr>
-		<?php 
-        do_action( 'lsx_to_framework_' . $post_type . '_tab_archive_settings_bottom', $post_type );
+		<?php
+		do_action( 'lsx_to_framework_' . $post_type . '_tab_archive_settings_bottom', $post_type );
 	}
 
 	/**
@@ -670,8 +670,8 @@ echo esc_attr( 'selected="selected"' ); }
 			<?php
 		}
 		do_action( 'lsx_to_framework_' . $post_type . '_tab_single_settings_top', $post_type );
-		if ( 'tour' == $post_type || 'accommodation' == $post_type || 'destination' == $post_type || 'activity' == $post_type ) : 
-        ?>
+		if ( 'tour' == $post_type || 'accommodation' == $post_type || 'destination' == $post_type || 'activity' == $post_type ) :
+			?>
 			<tr class="form-field">
 				<th scope="row">
 					<label for="section_title"><?php esc_html_e( 'Default Section Title', 'tour-operator' ); ?></label>
@@ -744,8 +744,8 @@ echo esc_attr( 'selected="selected"' ); }
 			<?php endif ?>
 		<?php endif ?>
 
-		<?php 
-        do_action( 'lsx_to_framework_' . $post_type . '_tab_single_settings_bottom', $post_type );
+		<?php
+		do_action( 'lsx_to_framework_' . $post_type . '_tab_single_settings_bottom', $post_type );
 	}
 
 	/**
@@ -838,7 +838,7 @@ echo esc_attr( 'selected="selected"' ); }
 	 */
 	public function enable_map_placeholder_checkbox() {
 		?>
-        	
+			
 		<tr class="form-field">
 			<th scope="row">
 				<label for="map_placeholder_enabled"><?php esc_html_e( 'Enable Map Placeholder', 'tour-operator' ); ?></label>

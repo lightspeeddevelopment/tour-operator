@@ -122,8 +122,8 @@ class Maps {
 			$suffix = '.min';
 		}
 
-		$dependacies = array( 'jquery', 'googlemaps_api', 'googlemaps_api_markercluster' );
-		$google_url  = 'https://maps.googleapis.com/maps/api/js?key=' . $api_key . '&libraries=places';
+		$dependacies           = array( 'jquery', 'googlemaps_api', 'googlemaps_api_markercluster' );
+		$google_url            = 'https://maps.googleapis.com/maps/api/js?key=' . $api_key . '&libraries=places';
 		$google_marker_cluster = LSX_TO_URL . 'assets/js/vendor/google-markerCluster.js';
 
 		if ( true === $this->placeholder_enabled ) {
@@ -164,28 +164,28 @@ class Maps {
 	 */
 	public function map_output( $post_id = false, $args = array() ) {
 		$defaults = array(
-			'lat' => '-33.914482',
-			'long' => '18.3758789',
-			'zoom' => 14,
-			'width' => '100%',
-			'height' => '400px',
-			'type' => 'single',
-			'search' => '',
-			'connections' => false,
-			'link' => true,
-			'selector' => '.lsx-map-preview',
-			'icon' => false,
-			'content' => 'address',
-			'kml' => false,
-			'cluster_small'     => tour_operator()->markers->cluster_small,
-			'cluster_medium'    => tour_operator()->markers->cluster_medium,
-			'cluster_large'     => tour_operator()->markers->cluster_large,
-			'fusion_tables' => false,
-			'fusion_tables_colour_border' => '#000000',
-			'fusion_tables_width_border' => '2',
+			'lat'                             => '-33.914482',
+			'long'                            => '18.3758789',
+			'zoom'                            => 14,
+			'width'                           => '100%',
+			'height'                          => '400px',
+			'type'                            => 'single',
+			'search'                          => '',
+			'connections'                     => false,
+			'link'                            => true,
+			'selector'                        => '.lsx-map-preview',
+			'icon'                            => false,
+			'content'                         => 'address',
+			'kml'                             => false,
+			'cluster_small'                   => tour_operator()->markers->cluster_small,
+			'cluster_medium'                  => tour_operator()->markers->cluster_medium,
+			'cluster_large'                   => tour_operator()->markers->cluster_large,
+			'fusion_tables'                   => false,
+			'fusion_tables_colour_border'     => '#000000',
+			'fusion_tables_width_border'      => '2',
 			'fusion_tables_colour_background' => '#000000',
-			'disable_cluster_js' => false,
-			'disable_auto_zoom' => false,
+			'disable_cluster_js'              => false,
+			'disable_auto_zoom'               => false,
 		);
 
 		$args        = wp_parse_args( $args, $defaults );
@@ -295,10 +295,10 @@ class Maps {
 	 */
 	public function set_icon( $post_id = false ) {
 		$settings = tour_operator()->options;
-		$icon = tour_operator()->markers->default_marker;
+		$icon     = tour_operator()->markers->default_marker;
 		if ( false !== $post_id ) {
 			$connection_type = get_post_type( $post_id );
-			$to_post_types = array_keys( lsx_to_get_post_types() );
+			$to_post_types   = array_keys( lsx_to_get_post_types() );
 			if ( in_array( $connection_type, $to_post_types ) ) {
 				if ( isset( tour_operator()->markers->post_types[ $connection_type ] ) ) {
 					$icon = tour_operator()->markers->post_types[ $connection_type ];
@@ -314,11 +314,11 @@ class Maps {
 	 * Gets the Map Preview image src.
 	 */
 	public function get_map_preview_src( $mobile = false, $laptop = false ) {
-		$settings = tour_operator()->options;
-		$prefix = '';
+		$settings     = tour_operator()->options;
+		$prefix       = '';
 		$default_size = '1920x656';
 		if ( false !== $mobile ) {
-			$prefix = '_mobile';
+			$prefix       = '_mobile';
 			$default_size = '400x400';
 		}
 		if ( false !== $laptop ) {
@@ -367,7 +367,7 @@ class Maps {
 	 * @return string
 	 */
 	public function get_map_preview_html( $width = '', $height = '' ) {
-		$preview_src = $this->get_map_preview_src();
+		$preview_src  = $this->get_map_preview_src();
 		$preview_html = '';
 		if ( '' !== $preview_src ) {
 			$preview_src_mobile = $this->get_map_preview_src( true );
@@ -378,9 +378,9 @@ class Maps {
 			if ( '' === $preview_src_laptop ) {
 				$preview_src_laptop = $preview_src;
 			}
-			$srcset = $preview_src_mobile . ' 600w,' . $preview_src_laptop . ' 1280w,' . $preview_src . ' 1920w';
-			$sizes = 'sizes="(max-width: 600) 10vw, (max-width: 1280px) 50vw, 100vw"';
-			$preview_html = '<img class="lsx-map-placeholder" ' . $sizes . ' src="' . $preview_src . '" srcset="' . $srcset . '" style="cursor:pointer;width:' . $width . ';height:' . $height . ';" />';
+			$srcset        = $preview_src_mobile . ' 600w,' . $preview_src_laptop . ' 1280w,' . $preview_src . ' 1920w';
+			$sizes         = 'sizes="(max-width: 600) 10vw, (max-width: 1280px) 50vw, 100vw"';
+			$preview_html  = '<img class="lsx-map-placeholder" ' . $sizes . ' src="' . $preview_src . '" srcset="' . $srcset . '" style="cursor:pointer;width:' . $width . ';height:' . $height . ';" />';
 			$preview_html .= '<div class="placeholder-text"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" style="margin-top:-' . ( ( (int) $height / 2 ) + 31 ) . 'px">' . esc_html__( 'Click to display the map', 'tour-operator' ) . '</h2></div>';
 		}
 		return $preview_html;
@@ -391,7 +391,7 @@ class Maps {
 	 * @package  ctt-lsx-child
 	 */
 	public function is_a_bot() {
-		$is_bot = false;
+		$is_bot      = false;
 		$user_agents = array(
 			'Googlebot',
 			'Googlebot-Mobile',

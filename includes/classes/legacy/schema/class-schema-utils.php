@@ -14,7 +14,7 @@ namespace lsx\legacy;
 class Schema_Utils {
 
 	public static function get_option( $key = '', $tab = 'general' ) {
-		$value = '';
+		$value         = '';
 		$tour_operator = tour_operator();
 		if ( isset( $tour_operator->options[ $tab ] ) && isset( $tour_operator->options[ $tab ][ $key ] ) ) {
 			$value = $tour_operator->options[ $tab ][ $key ];
@@ -224,11 +224,11 @@ class Schema_Utils {
 			'@id'           => self::get_article_schema_id( $post_id, $context, $local ),
 			'author'        => get_the_author_meta( 'display_name', get_post_field( 'post_author', $post_id ) ),
 			'datePublished' => mysql2date( DATE_W3C, get_post_field( 'post_date_gmt', $post_id ), false ),
-			'dateModified' => mysql2date( DATE_W3C, get_post_field( 'post_modified_gmt', $post_id ), false ),
+			'dateModified'  => mysql2date( DATE_W3C, get_post_field( 'post_modified_gmt', $post_id ), false ),
 		);
-		$args = wp_parse_args( $args, $defaults );
-		$args = apply_filters( 'lsx_to_schema_tour_article_args', $args );
-		$offer = array(
+		$args     = wp_parse_args( $args, $defaults );
+		$args     = apply_filters( 'lsx_to_schema_tour_article_args', $args );
+		$offer    = array(
 			'@type' => apply_filters( 'lsx_to_schema_tour_article_type', 'Article', $args ),
 		);
 		foreach ( $args as $key => $value ) {

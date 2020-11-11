@@ -12,49 +12,85 @@ class SCPO_Engine {
 		add_action( 'admin_init', array( $this, 'refresh' ) );
 		add_action( 'admin_init', array( $this, 'load_script_css' ) );
 
-		add_action( 'wp_ajax_update-menu-order', array(
-			$this,
-			'update_menu_order',
-		) );
-		add_action( 'wp_ajax_update-menu-order-tags', array(
-			$this,
-			'update_menu_order_tags',
-		) );
+		add_action(
+			'wp_ajax_update-menu-order',
+			array(
+				$this,
+				'update_menu_order',
+			)
+		);
+		add_action(
+			'wp_ajax_update-menu-order-tags',
+			array(
+				$this,
+				'update_menu_order_tags',
+			)
+		);
 
-		add_action( 'pre_get_posts', array(
-			$this,
-			'lsx_to_scporder_pre_get_posts',
-		) );
+		add_action(
+			'pre_get_posts',
+			array(
+				$this,
+				'lsx_to_scporder_pre_get_posts',
+			)
+		);
 
-		add_filter( 'get_previous_post_where', array(
-			$this,
-			'lsx_to_scporder_previous_post_where',
-		) );
-		add_filter( 'get_previous_post_sort', array(
-			$this,
-			'lsx_to_scporder_previous_post_sort',
-		) );
-		add_filter( 'get_next_post_where', array(
-			$this,
-			'lsx_to_scporder_next_post_where',
-		) );
-		add_filter( 'get_next_post_sort', array(
-			$this,
-			'lsx_to_scporder_next_post_sort',
-		) );
+		add_filter(
+			'get_previous_post_where',
+			array(
+				$this,
+				'lsx_to_scporder_previous_post_where',
+			)
+		);
+		add_filter(
+			'get_previous_post_sort',
+			array(
+				$this,
+				'lsx_to_scporder_previous_post_sort',
+			)
+		);
+		add_filter(
+			'get_next_post_where',
+			array(
+				$this,
+				'lsx_to_scporder_next_post_where',
+			)
+		);
+		add_filter(
+			'get_next_post_sort',
+			array(
+				$this,
+				'lsx_to_scporder_next_post_sort',
+			)
+		);
 
-		add_filter( 'get_terms_orderby', array(
-			$this,
-			'lsx_to_scporder_get_terms_orderby',
-		), 10, 3 );
-		add_filter( 'wp_get_object_terms', array(
-			$this,
-			'lsx_to_scporder_get_object_terms',
-		), 10, 4 );
-		add_filter( 'get_terms', array(
-			$this,
-			'lsx_to_scporder_get_object_terms',
-		), 10, 4 );
+		add_filter(
+			'get_terms_orderby',
+			array(
+				$this,
+				'lsx_to_scporder_get_terms_orderby',
+			),
+			10,
+			3
+		);
+		add_filter(
+			'wp_get_object_terms',
+			array(
+				$this,
+				'lsx_to_scporder_get_object_terms',
+			),
+			10,
+			4
+		);
+		add_filter(
+			'get_terms',
+			array(
+				$this,
+				'lsx_to_scporder_get_object_terms',
+			),
+			10,
+			4
+		);
 	}
 
 	function lsx_to_scporder_install() {
@@ -123,22 +159,32 @@ class SCPO_Engine {
 
 		if ( ! empty( $objects ) ) {
 			foreach ( $objects as $object => $object_data ) {
-				$result = $wpdb->get_results( $wpdb->prepare( "
+				$result = $wpdb->get_results(
+					$wpdb->prepare(
+						"
 					SELECT count(*) as cnt, max(menu_order) as max, min(menu_order) as min
 					FROM $wpdb->posts
 					WHERE post_type = '%s' AND post_status IN ('publish', 'pending', 'draft', 'private', 'future')
-				", $object ) );
+				",
+						$object
+					)
+				);
 
 				if ( 0 == $result[0]->cnt || $result[0]->cnt == $result[0]->max ) {
 					continue;
 				}
 
-				$results = $wpdb->get_results( $wpdb->prepare( "
+				$results = $wpdb->get_results(
+					$wpdb->prepare(
+						"
 					SELECT ID
 					FROM $wpdb->posts
 					WHERE post_type = '%s' AND post_status IN ('publish', 'pending', 'draft', 'private', 'future')
 					ORDER BY menu_order ASC
-				", $object ) );
+				",
+						$object
+					)
+				);
 
 				foreach ( $results as $key => $result ) {
 					$wpdb->update(
@@ -156,24 +202,34 @@ class SCPO_Engine {
 
 		if ( ! empty( $tags ) ) {
 			foreach ( $tags as $taxonomy => $taxonomy_data ) {
-				$result = $wpdb->get_results( $wpdb->prepare( "
+				$result = $wpdb->get_results(
+					$wpdb->prepare(
+						"
 					SELECT count(*) as cnt, max(lsx_to_term_order) as max, min(lsx_to_term_order) as min
 					FROM $wpdb->terms AS terms
 					INNER JOIN $wpdb->term_taxonomy AS term_taxonomy ON ( terms.term_id = term_taxonomy.term_id )
 					WHERE term_taxonomy.taxonomy = '%s'
-				", $taxonomy ) );
+				",
+						$taxonomy
+					)
+				);
 
 				if ( 0 == $result[0]->cnt || $result[0]->cnt == $result[0]->max ) {
 					continue;
 				}
 
-				$results = $wpdb->get_results( $wpdb->prepare( "
+				$results = $wpdb->get_results(
+					$wpdb->prepare(
+						"
 					SELECT terms.term_id
 					FROM $wpdb->terms AS terms
 					INNER JOIN $wpdb->term_taxonomy AS term_taxonomy ON ( terms.term_id = term_taxonomy.term_id )
 					WHERE term_taxonomy.taxonomy = '%s'
 					ORDER BY lsx_to_term_order ASC
-				", $taxonomy ) );
+				",
+						$taxonomy
+					)
+				);
 
 				foreach ( $results as $key => $result ) {
 					$wpdb->update(
@@ -201,7 +257,8 @@ class SCPO_Engine {
 			return false;
 		}
 
-		/*$id_arr = array();
+		/*
+		$id_arr = array();
 
 		foreach ( $data as $key => $values ) {
 			foreach ( $values as $position => $id ) {
@@ -246,12 +303,14 @@ class SCPO_Engine {
 			return false;
 		}
 
-		/*$current_user = wp_get_current_user();
+		/*
+		$current_user = wp_get_current_user();
 		if ( false === $current_user || 'lightspeed' !== $current_user->data->user_login ) {
 			return false;
 		}*/
 
-		/*$id_arr = array();
+		/*
+		$id_arr = array();
 
 		foreach ( $data as $key => $values ) {
 			foreach ( $values as $position => $id ) {

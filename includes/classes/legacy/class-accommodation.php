@@ -92,7 +92,7 @@ class Accommodation {
 
 		add_filter( 'lsx_to_custom_field_query', array( $this, 'rating' ), 5, 10 );
 
-		include( 'class-unit-query.php' );
+		include 'class-unit-query.php';
 
 		add_action( 'lsx_to_map_meta', 'lsx_to_accommodation_meta' );
 		add_action( 'lsx_to_modal_meta', 'lsx_to_accommodation_meta' );
@@ -197,7 +197,7 @@ class Accommodation {
 					break;
 
 				case 'total_percentage':
-					$value  .= '% ' . esc_html__( 'Off', 'tour-operator' );
+					$value .= '% ' . esc_html__( 'Off', 'tour-operator' );
 					$before = str_replace( esc_html__( 'From price', 'tour-operator' ), '', $before );
 					break;
 
@@ -313,7 +313,7 @@ class Accommodation {
 	 * Tests for the Gallery and returns a link for the section
 	 */
 	public function get_gallery_link() {
-		$gallery_ids = get_post_meta( get_the_ID(), 'gallery', false );
+		$gallery_ids    = get_post_meta( get_the_ID(), 'gallery', false );
 		$envira_gallery = get_post_meta( get_the_ID(), 'envira_gallery', true );
 
 		if ( ( ! empty( $gallery_ids ) && is_array( $gallery_ids ) ) || ( function_exists( 'envira_gallery' ) && ! empty( $envira_gallery ) && false === lsx_to_enable_envira_banner() ) ) {
@@ -361,14 +361,16 @@ class Accommodation {
 		$connected_specials = get_post_meta( get_the_ID(), 'special_to_accommodation', false );
 
 		if ( post_type_exists( 'special' ) && is_array( $connected_specials ) && ! empty( $connected_specials ) ) {
-			$connected_specials = new \WP_Query( array(
-				'post_type' => 'special',
-				'post__in' => $connected_specials,
-				'post_status' => 'publish',
-				'nopagin' => true,
-				'posts_per_page' => '-1',
-				'fields' => 'ids',
-			) );
+			$connected_specials = new \WP_Query(
+				array(
+					'post_type'      => 'special',
+					'post__in'       => $connected_specials,
+					'post_status'    => 'publish',
+					'nopagin'        => true,
+					'posts_per_page' => '-1',
+					'fields'         => 'ids',
+				)
+			);
 
 			$connected_specials = $connected_specials->posts;
 
@@ -385,14 +387,16 @@ class Accommodation {
 		$connected_reviews = get_post_meta( get_the_ID(), 'review_to_accommodation', false );
 
 		if ( post_type_exists( 'review' ) && is_array( $connected_reviews ) && ! empty( $connected_reviews ) ) {
-			$connected_reviews = new \WP_Query( array(
-				'post_type' => 'review',
-				'post__in' => $connected_reviews,
-				'post_status' => 'publish',
-				'nopagin' => true,
-				'posts_per_page' => '-1',
-				'fields' => 'ids',
-			) );
+			$connected_reviews = new \WP_Query(
+				array(
+					'post_type'      => 'review',
+					'post__in'       => $connected_reviews,
+					'post_status'    => 'publish',
+					'nopagin'        => true,
+					'posts_per_page' => '-1',
+					'fields'         => 'ids',
+				)
+			);
 
 			$connected_reviews = $connected_reviews->posts;
 
@@ -406,15 +410,15 @@ class Accommodation {
 	 * Tests for the Related Accommodation and returns a link for the section
 	 */
 	public function get_related_accommodation_link() {
-		$taxonomy = 'travel-style';
+		$taxonomy  = 'travel-style';
 		$post_type = 'accommodation';
 
 		$filters = array();
 
-		$filters['post_type'] = $post_type;
+		$filters['post_type']      = $post_type;
 		$filters['posts_per_page'] = 15;
-		$filters['post__not_in'] = array( get_the_ID() );
-		$filters['orderby'] = 'rand';
+		$filters['post__not_in']   = array( get_the_ID() );
+		$filters['orderby']        = 'rand';
 
 		$terms = wp_get_object_terms( get_the_ID(), $taxonomy );
 
@@ -446,14 +450,16 @@ class Accommodation {
 		$connected_tours = get_post_meta( get_the_ID(), 'tour_to_accommodation', false );
 
 		if ( lsx_to_accommodation_display_connected_tours() && is_array( $connected_tours ) && ! empty( $connected_tours ) ) {
-			$connected_tours = new \WP_Query( array(
-				'post_type' => 'tour',
-				'post__in' => $connected_tours,
-				'post_status' => 'publish',
-				'nopagin' => true,
-				'posts_per_page' => '-1',
-				'fields' => 'ids',
-			) );
+			$connected_tours = new \WP_Query(
+				array(
+					'post_type'      => 'tour',
+					'post__in'       => $connected_tours,
+					'post_status'    => 'publish',
+					'nopagin'        => true,
+					'posts_per_page' => '-1',
+					'fields'         => 'ids',
+				)
+			);
 
 			$connected_tours = $connected_tours->posts;
 
@@ -470,14 +476,16 @@ class Accommodation {
 		$connected_posts = get_post_meta( get_the_ID(), 'post_to_accommodation', false );
 
 		if ( is_array( $connected_posts ) && ! empty( $connected_posts ) ) {
-			$connected_posts = new \WP_Query( array(
-				'post_type' => 'post',
-				'post__in' => $connected_posts,
-				'post_status' => 'publish',
-				'nopagin' => true,
-				'posts_per_page' => '-1',
-				'fields' => 'ids',
-			) );
+			$connected_posts = new \WP_Query(
+				array(
+					'post_type'      => 'post',
+					'post__in'       => $connected_posts,
+					'post_status'    => 'publish',
+					'nopagin'        => true,
+					'posts_per_page' => '-1',
+					'fields'         => 'ids',
+				)
+			);
 
 			$connected_posts = $connected_posts->posts;
 

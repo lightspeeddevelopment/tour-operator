@@ -15,15 +15,15 @@ global $continent;
 	<?php
 		$thumbnail_id = get_term_meta( $continent->term_id, 'thumbnail', true );
 
-		if ( empty( $thumbnail_id ) ) {
-			$image_src = 'https://placeholdit.imgix.net/~text?txtsize=38&txt=' . urlencode( get_bloginfo( 'name' ) ) . '&w=360&h=168';
-		} else {
-			$image_arr = wp_get_attachment_image_src( $thumbnail_id, 'lsx-thumbnail-wide' );
+	if ( empty( $thumbnail_id ) ) {
+		$image_src = 'https://placeholdit.imgix.net/~text?txtsize=38&txt=' . urlencode( get_bloginfo( 'name' ) ) . '&w=360&h=168';
+	} else {
+		$image_arr = wp_get_attachment_image_src( $thumbnail_id, 'lsx-thumbnail-wide' );
 
-			if ( is_array( $image_arr ) ) {
-				$image_src = $image_arr[0];
-			}
+		if ( is_array( $image_arr ) ) {
+			$image_src = $image_arr[0];
 		}
+	}
 	?>
 
 	<div class="lsx-to-archive-thumb">
@@ -48,5 +48,5 @@ global $continent;
 
 </article>
 
-<?php 
+<?php
 lsx_entry_after();

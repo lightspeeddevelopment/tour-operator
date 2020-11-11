@@ -175,7 +175,7 @@ class LSX_TO_Schema_Graph_Piece implements WPSEO_Graph_Piece {
 				'availability'       => 'https://schema.org/OnlineOnly',
 				'url'                => $this->post_url,
 			);
-			$data = \lsx\legacy\Schema_Utils::add_offer( $data, $this->context->id, $this->context, $offer_args, true );
+			$data       = \lsx\legacy\Schema_Utils::add_offer( $data, $this->context->id, $this->context, $offer_args, true );
 		}
 		return $data;
 	}
@@ -231,9 +231,9 @@ class LSX_TO_Schema_Graph_Piece implements WPSEO_Graph_Piece {
 	/**
 	 * Gets the connected reviews post type and set it as the "Review" schema
 	 *
-	 * @param  array    $data An array of offers already added.
-	 * @param  string   $data_key
-	 * @param  boolean  $include_aggregate
+	 * @param  array   $data An array of offers already added.
+	 * @param  string  $data_key
+	 * @param  boolean $include_aggregate
 	 * @return array    $data
 	 */
 	public function add_reviews( $data, $data_key = 'reviews', $include_aggregate = true ) {
@@ -455,7 +455,7 @@ class LSX_TO_Schema_Graph_Piece implements WPSEO_Graph_Piece {
 	/**
 	 * Adds the address and the lat and long coordinates
 	 *
-	 * @param  array $data
+	 * @param  array  $data
 	 * @param  string $data_key
 	 * @return array
 	 */

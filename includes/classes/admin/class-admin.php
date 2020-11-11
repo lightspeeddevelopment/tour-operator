@@ -63,14 +63,20 @@ class Admin {
 	 * @since 1.1.0
 	 */
 	public function register_pages() {
-		array_map( array(
-			$this,
-			'register_post_type_page',
-		), tour_operator()->post_types->get_all() );
-		array_map( array(
-			$this,
-			'register_taxonomy_page',
-		), tour_operator()->taxonomies->get_all() );
+		array_map(
+			array(
+				$this,
+				'register_post_type_page',
+			),
+			tour_operator()->post_types->get_all()
+		);
+		array_map(
+			array(
+				$this,
+				'register_taxonomy_page',
+			),
+			tour_operator()->taxonomies->get_all()
+		);
 
 	}
 
@@ -265,19 +271,34 @@ class Admin {
 	 */
 	public function reorder_menu_pages( $items ) {
 
-		$menu = array();
-		$menu += $this->sort_post_type_menu( array_filter( $items, array(
-			$this,
-			'is_post_type_menu_item',
-		) ) );
-		$menu += $this->sort_taxonomy_menu( array_filter( $items, array(
-			$this,
-			'is_taxonomy_menu_item',
-		) ) );
-		$menu += $this->sort_page_menu( array_filter( $items, array(
-			$this,
-			'is_page_menu_item',
-		) ) );
+		$menu  = array();
+		$menu += $this->sort_post_type_menu(
+			array_filter(
+				$items,
+				array(
+					$this,
+					'is_post_type_menu_item',
+				)
+			)
+		);
+		$menu += $this->sort_taxonomy_menu(
+			array_filter(
+				$items,
+				array(
+					$this,
+					'is_taxonomy_menu_item',
+				)
+			)
+		);
+		$menu += $this->sort_page_menu(
+			array_filter(
+				$items,
+				array(
+					$this,
+					'is_page_menu_item',
+				)
+			)
+		);
 		ksort( $menu );
 
 		return $menu;

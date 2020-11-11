@@ -1,40 +1,40 @@
 .postbox > .inside > .cmb_metabox {
-    margin-left: 262px !important;
+	margin-left: 262px !important;
 }
 .lsx_tabs {
-    margin: 0 -12px;
-    padding: 0;
-    width: 250px;
-    float: left;
+	margin: 0 -12px;
+	padding: 0;
+	width: 250px;
+	float: left;
 }
 .lsx_tabs li.lsx_tab {
-    margin: 0;
-    border-bottom: 1px solid #eee;
+	margin: 0;
+	border-bottom: 1px solid #eee;
 }
 .lsx_tabs li.lsx_tab > a{
-    padding: 12px;
-    display: block;
-    cursor: pointer;
+	padding: 12px;
+	display: block;
+	cursor: pointer;
 }
 #lsx-tour-operators .inside,
 #tour-operator-plugin .inside {
-    box-shadow: 250px 0 0 #FAFAFA inset,251px 0 0 #eee inset;
-    margin: 10px 0 0;
+	box-shadow: 250px 0 0 #FAFAFA inset,251px 0 0 #eee inset;
+	margin: 10px 0 0;
 }
 .lsx_tabs li.lsx_tab:hover{
-    background: #fff;
+	background: #fff;
 }
 .lsx_tabs li.lsx_tab.active {
-    background: #E0E0E0;
-    font-weight: 600;
+	background: #E0E0E0;
+	font-weight: 600;
 }
 .lsx_tabs li.lsx_tab.active > a{
-    color: #555555;
+	color: #555555;
 }
 .CMB_Title {
-    margin-top: 7px;
+	margin-top: 7px;
 }
 .lsx_tabs_clear {
-    clear: both;
-    height: 12px;
+	clear: both;
+	height: 12px;
 }

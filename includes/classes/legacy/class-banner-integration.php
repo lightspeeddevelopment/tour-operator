@@ -46,9 +46,12 @@ class Banner_Integration {
 		add_filter( 'lsx_banner_title', array( $this, 'banner_title' ), 100 );
 
 		if ( false !== $this->options && ! isset( $this->options['display']['enable_galleries_in_banner'] ) ) {
-			add_filter( 'lsx_banners_envira_enable', function( $bool ) {
-				return false;
-			} );
+			add_filter(
+				'lsx_banners_envira_enable',
+				function( $bool ) {
+					return false;
+				}
+			);
 		}
 	}
 

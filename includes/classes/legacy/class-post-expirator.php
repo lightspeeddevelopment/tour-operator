@@ -34,26 +34,41 @@ class Post_Expirator {
 	 */
 	public function __construct() {
 		// Dashboard Views
-		add_action( 'manage_posts_custom_column', array(
-			$this,
-			'column_value',
-		) );
+		add_action(
+			'manage_posts_custom_column',
+			array(
+				$this,
+				'column_value',
+			)
+		);
 
-		add_filter( 'manage_posts_columns', array(
-			$this,
-			'add_column',
-		), 10, 2 );
+		add_filter(
+			'manage_posts_columns',
+			array(
+				$this,
+				'add_column',
+			),
+			10,
+			2
+		);
 
-		add_action( 'save_post', array(
-			$this,
-			'update_post_meta',
-		), 20 );
+		add_action(
+			'save_post',
+			array(
+				$this,
+				'update_post_meta',
+			),
+			20
+		);
 
-		//Expiration Methods
-		add_action( 'lsxToPostExpiratorExpire', array(
-			$this,
-			'post_expirator_expire',
-		) );
+		// Expiration Methods
+		add_action(
+			'lsxToPostExpiratorExpire',
+			array(
+				$this,
+				'post_expirator_expire',
+			)
+		);
 	}
 
 	/**
@@ -119,7 +134,7 @@ class Post_Expirator {
 		if ( isset( $_POST['expire_post'] ) && ! empty( $booking_dates ) ) {
 			foreach ( $booking_dates as $date_range ) {
 
-				$raw_date = date( 'Y-m-d', strtotime( $date_range ) );
+				$raw_date  = date( 'Y-m-d', strtotime( $date_range ) );
 				$raw_date .= '11:30:0';
 
 				$opts = array();
@@ -145,9 +160,9 @@ class Post_Expirator {
 	 * @return string
 	 */
 	public function get_expire_type( $id = 0 ) {
-		$return = 'draft';
+		$return        = 'draft';
 		$tour_operator = tour_operator();
-		$post_type = get_post_type( $id );
+		$post_type     = get_post_type( $id );
 
 		if ( isset( $tour_operator->options[ $post_type ] ) ) {
 			$return = $tour_operator->options[ $post_type ]['expiration_status'];
@@ -161,7 +176,7 @@ class Post_Expirator {
 	 * @return array
 	 */
 	public function get_booking_dates() {
-		$dates = array();
+		$dates                = array();
 		$booking_validity_end = false;
 
 		// @codingStandardsIgnoreStart
@@ -174,7 +189,7 @@ class Post_Expirator {
 			$dates[] = $booking_validity_end;
 		}
 
-		//$dates = $this->raw_format_dates( $dates );
+		// $dates = $this->raw_format_dates( $dates );
 		return $dates;
 	}
 
@@ -224,15 +239,19 @@ class Post_Expirator {
 
 		// Do Work
 		if ( 'draft' == $postoptions['expiretype'] ) {
-			wp_update_post( array(
-				'ID' => $id,
-				'post_status' => 'draft',
-			) );
+			wp_update_post(
+				array(
+					'ID'          => $id,
+					'post_status' => 'draft',
+				)
+			);
 		} elseif ( 'private' == $postoptions['expiretype'] ) {
-			wp_update_post( array(
-				'ID' => $id,
-				'post_status' => 'private',
-			) );
+			wp_update_post(
+				array(
+					'ID'          => $id,
+					'post_status' => 'private',
+				)
+			);
 		} elseif ( 'delete' == $postoptions['expiretype'] ) {
 			wp_delete_post( $id );
 		}

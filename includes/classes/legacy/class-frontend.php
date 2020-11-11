@@ -42,6 +42,7 @@ class Frontend extends Tour_Operator {
 
 	/**
 	 * Holds the maps class
+	 *
 	 * @var      object
 	 */
 	public $maps = array();
@@ -77,7 +78,7 @@ class Frontend extends Tour_Operator {
 		// add_filter( 'the_terms', array( $this, 'links_new_window' ), 10, 2 );
 
 		$this->redirects = new Template_Redirects( LSX_TO_PATH, array_keys( $this->base_post_types ), array_keys( $this->base_taxonomies ) );
-		$this->maps = Maps::get_instance();
+		$this->maps      = Maps::get_instance();
 
 		add_filter( 'get_the_archive_title', array( $this, 'get_the_archive_title' ), 100 );
 
@@ -190,7 +191,7 @@ class Frontend extends Tour_Operator {
 		global $lsx_to_archive, $post;
 
 		if ( true === $this->enable_modals && ! empty( $this->modal_ids ) ) {
-			$temp = $lsx_to_archive;
+			$temp           = $lsx_to_archive;
 			$lsx_to_archive = 1;
 
 			foreach ( $this->modal_ids as $post_id ) {
@@ -233,7 +234,7 @@ class Frontend extends Tour_Operator {
 	 * @return    null
 	 */
 	public function enqueue_stylescripts() {
-		$has_slick = wp_script_is( 'slick', 'queue' );
+		$has_slick          = wp_script_is( 'slick', 'queue' );
 		$has_slick_lightbox = wp_script_is( 'slick-lightbox', 'queue' );
 		if ( defined( 'SCRIPT_DEBUG' ) ) {
 			$prefix = 'src/';
@@ -340,7 +341,7 @@ class Frontend extends Tour_Operator {
 				) ";
 
 				$new_orderby .= ( 'ASC' == strtoupper( $query->get( 'order' ) ) ) ? 'ASC' : 'DESC';
-				$orderby = $new_orderby . ', ' . $orderby;
+				$orderby      = $new_orderby . ', ' . $orderby;
 			}
 		}
 
@@ -367,11 +368,11 @@ class Frontend extends Tour_Operator {
 	 * add target="_blank" to the travel style links
 	 */
 	// public function links_new_window( $terms, $taxonomy ) {
-	// 	if ( 'travel-style' === $taxonomy || 'accommodation-type' === $taxonomy ) {
-	// 		$terms = str_replace( '<a', '<a target="_blank"', $terms );
-	// 	}
+	// if ( 'travel-style' === $taxonomy || 'accommodation-type' === $taxonomy ) {
+	// $terms = str_replace( '<a', '<a target="_blank"', $terms );
+	// }
 
-	// 	return $terms;
+	// return $terms;
 	// }
 
 	/**
@@ -446,13 +447,13 @@ class Frontend extends Tour_Operator {
 			global $post;
 
 			$has_single = ! lsx_to_is_single_disabled();
-			$permalink = '';
+			$permalink  = '';
 
 			if ( $has_single ) {
 				$permalink = get_the_permalink();
 			} elseif ( ! is_post_type_archive( $post_type ) ) {
 				$has_single = true;
-				$permalink = get_post_type_archive_link( $post_type ) . '#' . $post_type . '-' . $post->post_name;
+				$permalink  = get_post_type_archive_link( $post_type ) . '#' . $post_type . '-' . $post->post_name;
 			}
 
 			if ( ! empty( $permalink ) ) {
@@ -521,7 +522,7 @@ class Frontend extends Tour_Operator {
 			foreach ( $tokens[0] as $token ) {
 				if ( $count >= $excerpt_word_count ) {
 					$excerpt_output .= trim( $token );
-					$has_more = true;
+					$has_more        = true;
 					break;
 				}
 
@@ -571,7 +572,7 @@ class Frontend extends Tour_Operator {
 			$content = array( $content );
 		}
 
-		$teaser = $content[0];
+		$teaser  = $content[0];
 		$output .= $teaser;
 
 		if ( count( $content ) > 1 ) {
@@ -600,7 +601,7 @@ class Frontend extends Tour_Operator {
 
 		if ( file_exists( $css_fonts_file ) ) {
 			if ( empty( $wp_filesystem ) ) {
-				require_once( ABSPATH . 'wp-admin/includes/file.php' );
+				require_once ABSPATH . 'wp-admin/includes/file.php';
 				WP_Filesystem();
 			}
 
@@ -733,7 +734,7 @@ class Frontend extends Tour_Operator {
 	 * @return array
 	 */
 	public function accommodation_breadcrumb_links( $crumbs ) {
-		$new_crumbs = array(
+		$new_crumbs           = array(
 			array(
 				'text' => esc_attr__( 'Home', 'tour-operator' ),
 				'url'  => home_url(),
@@ -755,7 +756,7 @@ class Frontend extends Tour_Operator {
 				$all_destinations[] = get_post( $current_destination );
 			}
 
-			//Find the country
+			// Find the country
 			foreach ( $all_destinations as $destination_index => $destination ) {
 				if ( 0 === $destination->post_parent || '0' === $destination->post_parent ) {
 					$new_crumbs[] = array(
@@ -766,7 +767,7 @@ class Frontend extends Tour_Operator {
 				}
 			}
 
-			//Find the region
+			// Find the region
 			if ( ! empty( $all_destinations ) ) {
 				foreach ( $all_destinations as $destination_index => $destination ) {
 					$new_crumbs[] = array(
@@ -780,7 +781,7 @@ class Frontend extends Tour_Operator {
 			'text' => get_the_title(),
 			'url'  => get_permalink(),
 		);
-		$crumbs = $new_crumbs;
+		$crumbs       = $new_crumbs;
 		return $crumbs;
 	}
 
@@ -801,7 +802,7 @@ class Frontend extends Tour_Operator {
 				'url'  => get_post_type_archive_link( 'tour' ),
 			),
 		);
-		$region = get_post_meta( get_the_ID(), 'departs_from', false );
+		$region     = get_post_meta( get_the_ID(), 'departs_from', false );
 		if ( false !== $region && isset( $region[0] ) ) {
 			$country = wp_get_post_parent_id( $region[0] );
 			if ( false !== $country && '' !== $country ) {
@@ -819,7 +820,7 @@ class Frontend extends Tour_Operator {
 			'text' => get_the_title(),
 			'url'  => get_permalink(),
 		);
-		$crumbs = $new_crumbs;
+		$crumbs       = $new_crumbs;
 		return $crumbs;
 	}
 }

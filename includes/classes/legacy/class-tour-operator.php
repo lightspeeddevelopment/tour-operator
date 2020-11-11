@@ -312,7 +312,7 @@ class Tour_Operator {
 	 * @return void
 	 */
 	public function disable_deprecated() {
-		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		include_once ABSPATH . 'wp-admin/includes/plugin.php';
 		if ( defined( 'LSX_TO_MAPS_CORE' ) && is_plugin_active( plugin_basename( LSX_TO_MAPS_CORE ) ) ) {
 			deactivate_plugins( plugin_basename( LSX_TO_MAPS_CORE ) );
 		}
@@ -334,7 +334,7 @@ class Tour_Operator {
 	 * Sets the variables for the class
 	 */
 	public function set_vars() {
-		$this->post_types          = array(
+		$this->post_types = array(
 			'destination'   => esc_html__( 'Destinations', 'tour-operator' ),
 			'accommodation' => esc_html__( 'Accommodation', 'tour-operator' ),
 			'tour'          => esc_html__( 'Tours', 'tour-operator' ),
@@ -351,7 +351,7 @@ class Tour_Operator {
 		$this->post_types_singular = apply_filters( 'lsx_to_post_types_singular', $this->post_types_singular );
 		$this->active_post_types   = array_keys( $this->post_types );
 
-		$this->taxonomies        = array(
+		$this->taxonomies = array(
 			'travel-style'        => __( 'Travel Style', 'tour-operator' ),
 			'accommodation-brand' => __( 'Brand', 'tour-operator' ),
 			'accommodation-type'  => __( 'Accommodation Type', 'tour-operator' ),
@@ -466,7 +466,7 @@ class Tour_Operator {
 		$settings_tab = apply_filters( 'lsx_to_settings_current_tab', $settings_tab );
 
 		if ( ! empty( $settings_tab ) ) {
-			$archive_layout = '';
+			$archive_layout                  = '';
 			$archive_list_layout_image_style = '';
 
 			if ( isset( $this->options[ $settings_tab ] ) && isset( $this->options[ $settings_tab ]['grid_list_layout'] ) ) {
@@ -616,7 +616,7 @@ class Tour_Operator {
 		$post_id = get_the_ID();
 
 		if ( ! empty( $post_id ) ) {
-			$post_id = get_the_ID();
+			$post_id       = get_the_ID();
 			$tagline_value = get_post_meta( $post_id, 'banner_subtitle', true );
 
 			if ( false !== $tagline_value ) {
@@ -654,7 +654,7 @@ class Tour_Operator {
 	public function get_post_type_archive_description( $description = false, $before = '', $after = '' ) {
 		if ( is_post_type_archive( $this->active_post_types ) && isset( $this->options[ get_post_type() ] ) && isset( $this->options[ get_post_type() ]['description'] ) && '' !== $this->options[ get_post_type() ]['description'] ) {
 			$description = $this->options[ get_post_type() ]['description'];
-			//$description = $this->apply_filters_the_content( $description );
+			// $description = $this->apply_filters_the_content( $description );
 			$description = $before . $description . $after;
 		}
 
@@ -700,7 +700,7 @@ class Tour_Operator {
 			$allowedtags['i'] = array();
 		}
 
-		$allowedtags['i']['aria-hidden']    = true;
+		$allowedtags['i']['aria-hidden'] = true;
 
 		if ( ! isset( $allowedtags['span'] ) ) {
 			$allowedtags['span'] = array();
@@ -775,13 +775,13 @@ class Tour_Operator {
 		$allowedtags['div']['data-justified-margins']               = true;
 		$allowedtags['div']['data-slick']                           = true;
 
-		//Envirta Gallery tags
+		// Envirta Gallery tags
 		//
-		$allowedtags['div']['data-envira-id']                       = true;
-		$allowedtags['div']['data-gallery-config']                  = true;
-		$allowedtags['div']['data-gallery-images']                  = true;
-		$allowedtags['div']['data-gallery-theme']                   = true;
-		$allowedtags['div']['data-envira-columns']                  = true;
+		$allowedtags['div']['data-envira-id']      = true;
+		$allowedtags['div']['data-gallery-config'] = true;
+		$allowedtags['div']['data-gallery-images'] = true;
+		$allowedtags['div']['data-gallery-theme']  = true;
+		$allowedtags['div']['data-envira-columns'] = true;
 
 		if ( ! isset( $allowedtags['img'] ) ) {
 			$allowedtags['img'] = array();
@@ -798,15 +798,15 @@ class Tour_Operator {
 			$allowedtags['input'] = array();
 		}
 
-		$allowedtags['input']['type']    = true;
-		$allowedtags['input']['id']      = true;
-		$allowedtags['input']['name']    = true;
-		$allowedtags['input']['value']   = true;
-		$allowedtags['input']['size']    = true;
-		$allowedtags['input']['checked'] = true;
-		$allowedtags['input']['onclick'] = true;
-		$allowedtags['input']['class'] = true;
-		$allowedtags['input']['placeholder'] = true;
+		$allowedtags['input']['type']         = true;
+		$allowedtags['input']['id']           = true;
+		$allowedtags['input']['name']         = true;
+		$allowedtags['input']['value']        = true;
+		$allowedtags['input']['size']         = true;
+		$allowedtags['input']['checked']      = true;
+		$allowedtags['input']['onclick']      = true;
+		$allowedtags['input']['class']        = true;
+		$allowedtags['input']['placeholder']  = true;
 		$allowedtags['input']['autocomplete'] = true;
 
 		if ( ! isset( $allowedtags['select'] ) ) {
@@ -1057,9 +1057,9 @@ class Tour_Operator {
 	 * @since 1.1.0
 	 */
 	public static function compatible_theme() {
-		$current_theme = wp_get_theme();
+		$current_theme    = wp_get_theme();
 		$current_template = $current_theme->get_template();
-		$theme_name = $current_theme->get( 'Name' );
+		$theme_name       = $current_theme->get( 'Name' );
 
 		if ( 'lsx' !== $current_template && 'LSX' !== $theme_name ) {
 			return false;

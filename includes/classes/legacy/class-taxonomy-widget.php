@@ -120,7 +120,7 @@ class Taxonomy_Widget extends \WP_Widget {
 			$interval = false;
 		}
 
-		//arguments
+		// arguments
 
 		if ( isset( $args['before_widget'] ) ) {
 			$before_widget = $args['before_widget'];
@@ -157,12 +157,12 @@ class Taxonomy_Widget extends \WP_Widget {
 		}
 
 		if ( $title_link ) {
-			#$link_open = "<a href='$title_link'>";
+			// $link_open = "<a href='$title_link'>";
 			$link_open = '';
-			#$link_close = "</a>";
+			// $link_close = "</a>";
 			$link_close = '';
 		} else {
-			$link_open = '';
+			$link_open  = '';
 			$link_close = '';
 		}
 
@@ -176,21 +176,21 @@ class Taxonomy_Widget extends \WP_Widget {
 		}
 
 		$args = array(
-			'title'  => $title,
-			'link' => $title_link,
-			'columns' => $columns,
-			'orderby' => $orderby,
-			'order' => $order,
-			'limit' => $limit,
-			'include' => $include,
+			'title'               => $title,
+			'link'                => $title_link,
+			'columns'             => $columns,
+			'orderby'             => $orderby,
+			'order'               => $order,
+			'limit'               => $limit,
+			'include'             => $include,
 			'disable_placeholder' => $disable_placeholder,
-			'disable_text' => $disable_text,
+			'disable_text'        => $disable_text,
 			'disable_single_link' => $disable_single_link,
-			'buttons' => $buttons,
-			'button_text' => $button_text,
-			'taxonomy' => $taxonomy,
-			'class' => $class,
-			'interval' => $interval,
+			'buttons'             => $buttons,
+			'button_text'         => $button_text,
+			'taxonomy'            => $taxonomy,
+			'class'               => $class,
+			'interval'            => $interval,
 		);
 
 		$args['carousel'] = $carousel;
@@ -204,22 +204,22 @@ class Taxonomy_Widget extends \WP_Widget {
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 
-		$instance['title'] = wp_kses_post( force_balance_tags( $new_instance['title'] ) );
-		$instance['title_link'] = strip_tags( $new_instance['title_link'] );
-		$instance['columns'] = strip_tags( $new_instance['columns'] );
-		$instance['orderby'] = strip_tags( $new_instance['orderby'] );
-		$instance['order'] = strip_tags( $new_instance['order'] );
-		$instance['limit'] = strip_tags( $new_instance['limit'] );
-		$instance['include'] = strip_tags( $new_instance['include'] );
+		$instance['title']               = wp_kses_post( force_balance_tags( $new_instance['title'] ) );
+		$instance['title_link']          = strip_tags( $new_instance['title_link'] );
+		$instance['columns']             = strip_tags( $new_instance['columns'] );
+		$instance['orderby']             = strip_tags( $new_instance['orderby'] );
+		$instance['order']               = strip_tags( $new_instance['order'] );
+		$instance['limit']               = strip_tags( $new_instance['limit'] );
+		$instance['include']             = strip_tags( $new_instance['include'] );
 		$instance['disable_placeholder'] = strip_tags( $new_instance['disable_placeholder'] );
-		$instance['disable_text'] = strip_tags( $new_instance['disable_text'] );
+		$instance['disable_text']        = strip_tags( $new_instance['disable_text'] );
 		$instance['disable_single_link'] = strip_tags( $new_instance['disable_single_link'] );
-		$instance['buttons'] = strip_tags( $new_instance['buttons'] );
-		$instance['button_text'] = strip_tags( $new_instance['button_text'] );
-		$instance['carousel'] = strip_tags( $new_instance['carousel'] );
-		$instance['taxonomy'] = strip_tags( $new_instance['taxonomy'] );
-		$instance['class'] = strip_tags( $new_instance['class'] );
-		$instance['interval'] = strip_tags( $new_instance['interval'] );
+		$instance['buttons']             = strip_tags( $new_instance['buttons'] );
+		$instance['button_text']         = strip_tags( $new_instance['button_text'] );
+		$instance['carousel']            = strip_tags( $new_instance['carousel'] );
+		$instance['taxonomy']            = strip_tags( $new_instance['taxonomy'] );
+		$instance['class']               = strip_tags( $new_instance['class'] );
+		$instance['interval']            = strip_tags( $new_instance['interval'] );
 
 		return $instance;
 	}
@@ -227,44 +227,44 @@ class Taxonomy_Widget extends \WP_Widget {
 	/** @see WP_Widget::form -- do not rename this */
 	function form( $instance ) {
 		$defaults = array(
-			'title' => '',
-			'title_link' => '',
-			'columns' => '1',
-			'orderby' => 'date',
-			'order' => 'DESC',
-			'limit' => '',
-			'include' => '',
+			'title'               => '',
+			'title_link'          => '',
+			'columns'             => '1',
+			'orderby'             => 'date',
+			'order'               => 'DESC',
+			'limit'               => '',
+			'include'             => '',
 			'disable_placeholder' => false,
-			'disable_text' => 0,
+			'disable_text'        => 0,
 			'disable_single_link' => 0,
-			'buttons' => false,
-			'button_text' => false,
-			'taxonomy' => '',
-			'class' => '',
-			'interval' => '7000',
+			'buttons'             => false,
+			'button_text'         => false,
+			'taxonomy'            => '',
+			'class'               => '',
+			'interval'            => '7000',
 		);
 
 		$defaults['carousel'] = 0;
 
 		$instance = wp_parse_args( (array) $instance, $defaults );
 
-		$title    = esc_attr( $instance['title'] );
-		$title_link    = esc_attr( $instance['title_link'] );
-		$columns  = esc_attr( $instance['columns'] );
-		$orderby  = esc_attr( $instance['orderby'] );
-		$order  = esc_attr( $instance['order'] );
-		$limit  = esc_attr( $instance['limit'] );
-		$include  = esc_attr( $instance['include'] );
-		$disable_placeholder  = esc_attr( $instance['disable_placeholder'] );
-		$disable_text  = esc_attr( $instance['disable_text'] );
-		$disable_single_link  = esc_attr( $instance['disable_single_link'] );
-		$buttons = esc_attr( $instance['buttons'] );
-		$button_text = esc_attr( $instance['button_text'] );
-		$taxonomy = esc_attr( $instance['taxonomy'] );
-		$class = esc_attr( $instance['class'] );
-		$interval = esc_attr( $instance['interval'] );
-		$carousel = esc_attr( $instance['carousel'] );
-		$interval = esc_attr( $instance['interval'] );
+		$title               = esc_attr( $instance['title'] );
+		$title_link          = esc_attr( $instance['title_link'] );
+		$columns             = esc_attr( $instance['columns'] );
+		$orderby             = esc_attr( $instance['orderby'] );
+		$order               = esc_attr( $instance['order'] );
+		$limit               = esc_attr( $instance['limit'] );
+		$include             = esc_attr( $instance['include'] );
+		$disable_placeholder = esc_attr( $instance['disable_placeholder'] );
+		$disable_text        = esc_attr( $instance['disable_text'] );
+		$disable_single_link = esc_attr( $instance['disable_single_link'] );
+		$buttons             = esc_attr( $instance['buttons'] );
+		$button_text         = esc_attr( $instance['button_text'] );
+		$taxonomy            = esc_attr( $instance['taxonomy'] );
+		$class               = esc_attr( $instance['class'] );
+		$interval            = esc_attr( $instance['interval'] );
+		$carousel            = esc_attr( $instance['carousel'] );
+		$interval            = esc_attr( $instance['interval'] );
 
 		?>
 		<p>
@@ -279,10 +279,13 @@ class Taxonomy_Widget extends \WP_Widget {
 				id="<?php echo wp_kses_post( $this->get_field_id( 'title_link' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'title_link' ) ); ?>" type="text"
 				value="<?php echo wp_kses_post( $title_link ); ?>" /> <small>
-                                  <?php 
-                esc_html_e( 'Link the widget title to
-				a URL', 'tour-operator' ); 
-?>
+								  <?php
+									esc_html_e(
+										'Link the widget title to
+				a URL',
+										'tour-operator'
+									);
+									?>
 </small>
 		</p>
 		<h4 class="widget-title" style="border-top: 1px solid #e5e5e5;padding-top:10px;"><?php esc_html_e( 'Query', 'tour-operator' ); ?></h4>
@@ -297,10 +300,10 @@ class Taxonomy_Widget extends \WP_Widget {
 				}
 
 				foreach ( $options as $key => $name ) {
-					$selected = ($taxonomy == $key) ? ' selected="selected"' : '';
+					$selected = ( $taxonomy == $key ) ? ' selected="selected"' : '';
 					?>
-                    <option value="<?php echo wp_kses_post( $key ); ?>" id="<?php echo wp_kses_post( $key ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option>
-                    <?php
+					<option value="<?php echo wp_kses_post( $key ); ?>" id="<?php echo wp_kses_post( $key ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option>
+					<?php
 				}
 				?>
 			</select>
@@ -311,17 +314,17 @@ class Taxonomy_Widget extends \WP_Widget {
 				id="<?php echo wp_kses_post( $this->get_field_id( 'orderby' ) ); ?>" class="widefat">
 					<?php
 					$options = array(
-						'Name' => 'name',
-						'Slug' => 'slug',
-						'ID' => 'term_id',
-						'Count' => 'count',
+						'Name'                 => 'name',
+						'Slug'                 => 'slug',
+						'ID'                   => 'term_id',
+						'Count'                => 'count',
 						'Admin (custom order)' => 'none',
 					);
 					foreach ( $options as $name => $value ) {
-						$selected = ($orderby == $value) ? ' selected="selected"' : '';
+						$selected = ( $orderby == $value ) ? ' selected="selected"' : '';
 						?>
-                        <option value="<?php echo wp_kses_post( $value ); ?>" id="<?php echo wp_kses_post( $value ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option>
-                        <?php
+						<option value="<?php echo wp_kses_post( $value ); ?>" id="<?php echo wp_kses_post( $value ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option>
+						<?php
 					}
 					?>
 					</select>
@@ -332,14 +335,14 @@ class Taxonomy_Widget extends \WP_Widget {
 				id="<?php echo wp_kses_post( $this->get_field_id( 'order' ) ); ?>" class="widefat">
 					<?php
 					$options = array(
-						'Ascending' => 'ASC',
+						'Ascending'  => 'ASC',
 						'Descending' => 'DESC',
 					);
 					foreach ( $options as $name => $value ) {
-						$selected = ($orderby == $value) ? ' selected="selected"' : '';
+						$selected = ( $orderby == $value ) ? ' selected="selected"' : '';
 						?>
-                        <option value="<?php echo wp_kses_post( $value ); ?>" id="<?php echo wp_kses_post( $value ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option>
-                        <?php
+						<option value="<?php echo wp_kses_post( $value ); ?>" id="<?php echo wp_kses_post( $value ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option>
+						<?php
 					}
 					?>
 			</select>
@@ -366,11 +369,11 @@ class Taxonomy_Widget extends \WP_Widget {
 					<?php
 					$options = array( '1', '2', '3', '4', '5', '6' );
 					foreach ( $options as $option ) {
-						$key = lcfirst( $option );
-						$selected = ($columns == $key) ? ' selected="selected"' : '';
+						$key      = lcfirst( $option );
+						$selected = ( $columns == $key ) ? ' selected="selected"' : '';
 						?>
-                        <option value="<?php echo wp_kses_post( $key ); ?>" id="<?php echo wp_kses_post( $key ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $option ); ?></option>
-                        <?php
+						<option value="<?php echo wp_kses_post( $key ); ?>" id="<?php echo wp_kses_post( $key ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $option ); ?></option>
+						<?php
 					}
 					?>
 			 </select>
@@ -458,20 +461,20 @@ class Taxonomy_Widget extends \WP_Widget {
 
 		if ( '' != $include ) {
 			$include = explode( ',', $include );
-			$args = array(
-				'taxonomy' => $taxonomy,
-				'number' => (int) $limit,
-				'include' => $include,
-				'orderby' => 'include',
-				'order' => $order,
+			$args    = array(
+				'taxonomy'   => $taxonomy,
+				'number'     => (int) $limit,
+				'include'    => $include,
+				'orderby'    => 'include',
+				'order'      => $order,
 				'hide_empty' => 0,
 			);
 		} else {
 			$args = array(
-				'taxonomy' => $taxonomy,
-				'number' => (int) $limit,
-				'orderby' => $orderby,
-				'order' => $order,
+				'taxonomy'   => $taxonomy,
+				'number'     => (int) $limit,
+				'orderby'    => $orderby,
+				'order'      => $order,
 				'hide_empty' => 0,
 			);
 		}
@@ -525,7 +528,7 @@ class Taxonomy_Widget extends \WP_Widget {
 
 		// Carousel Output Opening
 		if ( $carousel ) {
-			$landing_image = '';
+			$landing_image     = '';
 			$this->carousel_id = rand( 20, 20000 );
 
 			$output .= "<div class='slider-container lsx-to-widget-items'>";
@@ -589,7 +592,7 @@ class Taxonomy_Widget extends \WP_Widget {
 	}
 
 	/**
-	 * Redirect wordpress to the single template located in the plugin
+	 * Redirect WordPress to the single template located in the plugin
 	 *
 	 * @param    $template
 	 *
@@ -599,7 +602,7 @@ class Taxonomy_Widget extends \WP_Widget {
 		global $taxonomy;
 
 		$template = array();
-		$name = (string) $name;
+		$name     = (string) $name;
 
 		if ( '' !== $name ) {
 			$template = "{$slug}-{$name}.php";
@@ -608,7 +611,7 @@ class Taxonomy_Widget extends \WP_Widget {
 		}
 
 		$original_name = $template;
-		$path = apply_filters( 'lsx_to_widget_path', '', $taxonomy );
+		$path          = apply_filters( 'lsx_to_widget_path', '', $taxonomy );
 
 		if ( '' == locate_template( array( $template ) ) && file_exists( $path . 'templates/' . $template ) ) {
 			$template = $path . 'templates/' . $template;

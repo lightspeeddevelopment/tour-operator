@@ -188,7 +188,7 @@ class Unit_Query {
 			$thumbnail_src = apply_filters( 'lsx_to_accommodation_room_thumbnail', $thumbnail_src );
 
 			if ( false !== $this->query_item['gallery'] ) {
-				$images = array_values( $this->query_item['gallery'] );
+				$images    = array_values( $this->query_item['gallery'] );
 				$thumbnail = wp_get_attachment_image_src( $images[0], 'lsx-thumbnail-wide' );
 
 				if ( is_array( $thumbnail ) ) {

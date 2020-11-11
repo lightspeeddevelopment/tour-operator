@@ -40,9 +40,9 @@ class Admin extends Tour_Operator {
 		$this->videos = Video::get_instance();
 
 		add_action( 'init', array( $this, 'init' ) );
-		//add_action( 'admin_menu', array( $this, 'register_menu_pages' ) );
-		//add_action( 'custom_menu_order', array( $this, 'reorder_menu_pages' ) );
-		//add_action( 'admin_head', array( $this, 'select_submenu_pages' ) );
+		// add_action( 'admin_menu', array( $this, 'register_menu_pages' ) );
+		// add_action( 'custom_menu_order', array( $this, 'reorder_menu_pages' ) );
+		// add_action( 'admin_head', array( $this, 'select_submenu_pages' ) );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_stylescripts' ) );
 		add_action( 'cmb_save_custom', array( $this, 'post_relations' ), 3, 20 );
@@ -62,7 +62,7 @@ class Admin extends Tour_Operator {
 		if ( is_admin() ) {
 			$this->connections   = $this->create_post_connections();
 			$this->single_fields = apply_filters( 'lsx_to_search_fields', array() );
-			$this->taxonomies = apply_filters( 'lsx_to_taxonomies', $this->taxonomies );
+			$this->taxonomies    = apply_filters( 'lsx_to_taxonomies', $this->taxonomies );
 
 			add_filter( 'lsx_to_taxonomy_widget_taxonomies', array( $this, 'widget_taxonomies' ), 10, 1 );
 			add_filter( 'lsx_taxonomy_admin_taxonomies', array( $this, 'widget_taxonomies_slugs' ), 10, 1 );
@@ -130,22 +130,22 @@ class Admin extends Tour_Operator {
 	 * Display the addons page
 	 */
 	function addons_page() {
-		include( LSX_TO_PATH . 'includes/partials/add-ons.php' );
+		include LSX_TO_PATH . 'includes/partials/add-ons.php';
 	}
 
 	/**
 	 * Display the help page
 	 */
 	function help_page() {
-		include( LSX_TO_PATH . 'includes/partials/help.php' );
-		include( LSX_TO_PATH . 'includes/partials/add-ons.php' );
+		include LSX_TO_PATH . 'includes/partials/help.php';
+		include LSX_TO_PATH . 'includes/partials/add-ons.php';
 	}
 
 	/**
 	 * Display the licenses page
 	 */
 	function licenses_page() {
-		include( LSX_TO_PATH . 'includes/partials/licenses.php' );
+		include LSX_TO_PATH . 'includes/partials/licenses.php';
 	}
 
 	/**
@@ -161,17 +161,17 @@ class Admin extends Tour_Operator {
 				$delete_counter[ $fields_to_save ] = 0;
 			}
 
-			//Loop through each group in case of repeatable fields
+			// Loop through each group in case of repeatable fields
 			$relations          = false;
 			$previous_relations = false;
 
 			foreach ( $value as $group ) {
-				//loop through each of the fields in the group that need to be saved and grab their values.
+				// loop through each of the fields in the group that need to be saved and grab their values.
 				foreach ( $this->single_fields[ $field['id'] ] as $fields_to_save ) {
-					//Check if its an empty group
+					// Check if its an empty group
 					if ( isset( $group[ $fields_to_save ] ) && ! empty( $group[ $fields_to_save ] ) ) {
 						if ( $delete_counter[ $fields_to_save ] < 1 ) {
-							//If this is a relation field, then we need to save the previous relations to remove any items if need be.
+							// If this is a relation field, then we need to save the previous relations to remove any items if need be.
 							if ( in_array( $fields_to_save, $this->connections ) ) {
 								$previous_relations[ $fields_to_save ] = get_post_meta( $post_id, $fields_to_save, false );
 							}
@@ -180,7 +180,7 @@ class Admin extends Tour_Operator {
 							$delete_counter[ $fields_to_save ] ++;
 						}
 
-						//Run through each group
+						// Run through each group
 						foreach ( $group[ $fields_to_save ] as $field_value ) {
 							if ( null !== $field_value ) {
 								if ( 1 === $field_value ) {
@@ -189,7 +189,7 @@ class Admin extends Tour_Operator {
 
 								add_post_meta( $post_id, $fields_to_save, $field_value );
 
-								//If its a related connection the save that
+								// If its a related connection the save that
 								if ( in_array( $fields_to_save, $this->connections ) ) {
 									$relations[ $fields_to_save ][ $field_value ] = $field_value;
 								}
@@ -199,7 +199,7 @@ class Admin extends Tour_Operator {
 				}
 			}//end of the repeatable group foreach
 
-			//If we have relations, loop through them and save the meta
+			// If we have relations, loop through them and save the meta
 			if ( false !== $relations ) {
 				foreach ( $relations as $relation_key => $relation_values ) {
 					$temp_field = array(
@@ -222,7 +222,7 @@ class Admin extends Tour_Operator {
 	 * @return    null
 	 */
 	public function save_related_post( $post_id, $field, $value, $previous_values = false ) {
-		$ids = explode( '_to_', $field['id'] );
+		$ids      = explode( '_to_', $field['id'] );
 		$relation = $ids[1] . '_to_' . $ids[0];
 
 		if ( in_array( $relation, $this->connections ) ) {
@@ -310,14 +310,14 @@ class Admin extends Tour_Operator {
 					<?php echo wp_kses_post( $image_preview ); ?>
 				</div>
 				<a style="
-                <?php 
-                if ( '' !== $value && false !== $value ) {
-?>
+				<?php
+				if ( '' !== $value && false !== $value ) {
+					?>
 display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
 				<a style="
-                <?php 
-                if ( '' === $value || false === $value ) {
-?>
+				<?php
+				if ( '' === $value || false === $value ) {
+					?>
 display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-remove"><?php esc_html_e( 'Remove Image', 'tour-operator' ); ?></a>
 				<?php wp_nonce_field( 'lsx_to_save_term_thumbnail', 'lsx_to_term_thumbnail_nonce' ); ?>
 			</td>

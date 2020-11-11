@@ -19,11 +19,11 @@ function lsx_to_destination_posts() {
 	global $lsx_to_archive;
 
 	$args = array(
-		'from'      => 'post',
-		'to'        => 'destination',
-		'column'    => '3',
-		'before'    => '<section id="posts" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-posts' ) . '>' . esc_html__( 'Featured Posts', 'tour-operator' ) . '</h2><div id="collapse-posts" class="collapse in"><div class="collapse-inner">',
-		'after'     => '</div></div></section>',
+		'from'   => 'post',
+		'to'     => 'destination',
+		'column' => '3',
+		'before' => '<section id="posts" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-posts' ) . '>' . esc_html__( 'Featured Posts', 'tour-operator' ) . '</h2><div id="collapse-posts" class="collapse in"><div class="collapse-inner">',
+		'after'  => '</div></div></section>',
 	);
 
 	lsx_to_connected_panel_query( $args );
@@ -41,11 +41,11 @@ function lsx_to_region_accommodation() {
 
 	if ( post_type_exists( 'accommodation' ) && is_singular( 'destination' ) && ! lsx_to_item_has_children( get_the_ID(), 'destination' ) ) {
 		$args = array(
-			'from'      => 'accommodation',
-			'to'        => 'destination',
-			'column'    => '3',
-			'before'    => '<section id="accommodation" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-accommodation' ) . '>' . lsx_to_get_post_type_section_title( 'accommodation', '', esc_html__( 'Featured Accommodation', 'tour-operator' ) ) . '</h2><div id="collapse-accommodation" class="collapse in"><div class="collapse-inner">',
-			'after'     => '</div></div></section>',
+			'from'   => 'accommodation',
+			'to'     => 'destination',
+			'column' => '3',
+			'before' => '<section id="accommodation" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-accommodation' ) . '>' . lsx_to_get_post_type_section_title( 'accommodation', '', esc_html__( 'Featured Accommodation', 'tour-operator' ) ) . '</h2><div id="collapse-accommodation" class="collapse in"><div class="collapse-inner">',
+			'after'  => '</div></div></section>',
 		);
 
 		lsx_to_connected_panel_query( $args );
@@ -91,7 +91,7 @@ function lsx_to_country_regions( $args = array() ) {
 			$sticky_posts = $tour_operator->options['destination']['sticky_countries'];
 			switch ( $sticky_posts ) {
 				case 'sticky-only':
-					$meta_query = array(
+					$meta_query                = array(
 						array(
 							'key'     => 'sticky_order',
 							'value'   => '0',
@@ -108,14 +108,14 @@ function lsx_to_country_regions( $args = array() ) {
 					$region_args['meta_key'] = 'sticky_order';
 					$region_args['orderby']  = array(
 						'meta_value_num' => 'DESC',
-						'menu_order' => 'ASC',
+						'menu_order'     => 'ASC',
 					);
 					break;
 
 				case 'sticky-last':
 					$region_args['meta_key'] = 'sticky_order';
 					$region_args['orderby']  = array(
-						'menu_order' => 'ASC',
+						'menu_order'     => 'ASC',
 						'meta_value_num' => 'DESC',
 					);
 					break;
@@ -134,10 +134,10 @@ function lsx_to_country_regions( $args = array() ) {
 		if ( $regions->have_posts() ) : ?>
 			<section id="regions" class="lsx-to-section <?php lsx_to_collapsible_class( 'destination', false ); ?>">
 				<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" <?php lsx_to_collapsible_attributes_not_post( 'collapse-regions' ); ?>><?php echo esc_html( $settings['title'] ); ?>
-                                                                                                                               <?php 
-                if ( false !== $settings['tagline'] ) {
-echo '<small>' . wp_kses_post( $settings['tagline'] ) . '</small>'; } 
-?>
+																															   <?php
+																																if ( false !== $settings['tagline'] ) {
+																																	echo '<small>' . wp_kses_post( $settings['tagline'] ) . '</small>'; }
+																																?>
 </h2>
 
 				<div id="collapse-regions" class="collapse in">
@@ -146,34 +146,34 @@ echo '<small>' . wp_kses_post( $settings['tagline'] ) . '</small>'; }
 							<div id="slider-<?php echo esc_attr( rand( 20, 20000 ) ); ?>" class="lsx-to-slider">
 								<div class="lsx-to-slider-wrap">
 									<div class="lsx-to-slider-inner 
-                                    <?php 
-                                    if ( false === $settings['slider'] ) {
-echo esc_attr( 'slider-disabled' ); } 
-?>
+									<?php
+									if ( false === $settings['slider'] ) {
+										echo esc_attr( 'slider-disabled' ); }
+									?>
 " data-interval="6000" data-slick='{ "slidesToShow": 3, "slidesToScroll": 3 }'>
 
 									<?php
-										$lsx_to_archive = 1;
-										$wp_query->is_single = 0;
-										$wp_query->is_singular = 0;
+										$lsx_to_archive                 = 1;
+										$wp_query->is_single            = 0;
+										$wp_query->is_singular          = 0;
 										$wp_query->is_post_type_archive = 1;
 
-										while ( $regions->have_posts() ) {
-											$regions->the_post();
+									while ( $regions->have_posts() ) {
+										$regions->the_post();
 
-											global $disable_placeholder, $disable_text;
+										global $disable_placeholder, $disable_text;
 
-											$disable_placeholder = apply_filters( 'lsx_to_widget_disable_placeholder', false, 'destination', 'destination' );
-											$disable_text = apply_filters( 'lsx_to_widget_disable_text', false, 'destination', 'destination' );
+										$disable_placeholder = apply_filters( 'lsx_to_widget_disable_placeholder', false, 'destination', 'destination' );
+										$disable_text        = apply_filters( 'lsx_to_widget_disable_text', false, 'destination', 'destination' );
 
-											echo '<div class="lsx-to-widget-item-wrap lsx-regions">';
-											lsx_to_content( 'content-widget', 'destination' );
-											echo '</div>';
-										}
+										echo '<div class="lsx-to-widget-item-wrap lsx-regions">';
+										lsx_to_content( 'content-widget', 'destination' );
+										echo '</div>';
+									}
 
-										$lsx_to_archive = 0;
-										$wp_query->is_single = 1;
-										$wp_query->is_singular = 1;
+										$lsx_to_archive                 = 0;
+										$wp_query->is_single            = 1;
+										$wp_query->is_singular          = 1;
 										$wp_query->is_post_type_archive = 0;
 									?>
 									</div>
@@ -201,11 +201,11 @@ function lsx_to_destination_tours() {
 
 	if ( post_type_exists( 'tour' ) && is_singular( 'destination' ) ) {
 		$args = array(
-			'from'      => 'tour',
-			'to'        => 'destination',
-			'column'    => '3',
-			'before'    => '<section id="tours" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-tours' ) . '>' . lsx_to_get_post_type_section_title( 'tour', '', esc_html__( 'Featured Tours', 'tour-operator' ) ) . '</h2><div id="collapse-tours" class="collapse in"><div class="collapse-inner">',
-			'after'     => '</div></div></section>',
+			'from'   => 'tour',
+			'to'     => 'destination',
+			'column' => '3',
+			'before' => '<section id="tours" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-tours' ) . '>' . lsx_to_get_post_type_section_title( 'tour', '', esc_html__( 'Featured Tours', 'tour-operator' ) ) . '</h2><div id="collapse-tours" class="collapse in"><div class="collapse-inner">',
+			'after'  => '</div></div></section>',
 		);
 
 		lsx_to_connected_panel_query( $args );
@@ -224,12 +224,12 @@ function lsx_to_destination_activities() {
 
 	if ( post_type_exists( 'activity' ) && is_singular( 'destination' ) && ! lsx_to_item_has_children( get_the_ID(), 'destination' ) ) {
 		$args = array(
-			'from'          => 'activity',
-			'to'            => 'destination',
+			'from'   => 'activity',
+			'to'     => 'destination',
 			// 'content_part'	=>	'widget-activity',
-			'column'        => '3',
-			'before'        => '<section id="activities" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-activities' ) . '>' . lsx_to_get_post_type_section_title( 'activity', '', esc_html__( 'Featured Activities', 'tour-operator' ) ) . '</h2><div id="collapse-activities" class="collapse in"><div class="collapse-inner">',
-			'after'         => '</div></div></section>',
+			'column' => '3',
+			'before' => '<section id="activities" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-activities' ) . '>' . lsx_to_get_post_type_section_title( 'activity', '', esc_html__( 'Featured Activities', 'tour-operator' ) ) . '</h2><div id="collapse-activities" class="collapse in"><div class="collapse-inner">',
+			'after'  => '</div></div></section>',
 		);
 
 		lsx_to_connected_panel_query( $args );
@@ -244,16 +244,16 @@ function lsx_to_destination_activities() {
  * @category    destination
  */
 function lsx_to_destination_travel_info() {
-	$electricity    = get_post_meta( get_the_ID(), 'electricity', true );
-	$banking        = get_post_meta( get_the_ID(), 'banking', true );
-	$cuisine        = get_post_meta( get_the_ID(), 'cuisine', true );
-	$climate        = get_post_meta( get_the_ID(), 'climate', true );
-	$transport      = get_post_meta( get_the_ID(), 'transport', true );
-	$dress          = get_post_meta( get_the_ID(), 'dress', true );
-	$health         = get_post_meta( get_the_ID(), 'health', true );
-	$safety         = get_post_meta( get_the_ID(), 'safety', true );
-	$visa           = get_post_meta( get_the_ID(), 'visa', true );
-	$general        = get_post_meta( get_the_ID(), 'additional_info', true );
+	$electricity = get_post_meta( get_the_ID(), 'electricity', true );
+	$banking     = get_post_meta( get_the_ID(), 'banking', true );
+	$cuisine     = get_post_meta( get_the_ID(), 'cuisine', true );
+	$climate     = get_post_meta( get_the_ID(), 'climate', true );
+	$transport   = get_post_meta( get_the_ID(), 'transport', true );
+	$dress       = get_post_meta( get_the_ID(), 'dress', true );
+	$health      = get_post_meta( get_the_ID(), 'health', true );
+	$safety      = get_post_meta( get_the_ID(), 'safety', true );
+	$visa        = get_post_meta( get_the_ID(), 'visa', true );
+	$general     = get_post_meta( get_the_ID(), 'additional_info', true );
 
 	if ( ! empty( $electricity ) || ! empty( $banking ) || ! empty( $cuisine ) || ! empty( $climate ) || ! empty( $transport ) || ! empty( $dress ) || ! empty( $health ) || ! empty( $safety ) || ! empty( $visa ) || ! empty( $general ) ) :
 		$limit_words = 20;
@@ -261,16 +261,16 @@ function lsx_to_destination_travel_info() {
 		$more_button = "\n\n" . '<a class="moretag moretag-travel-info" href="#">Read More</a>' . "\n\n";
 
 		$items = array(
-			esc_html__( 'Electricity', 'tour-operator' )    => $electricity,
-			esc_html__( 'Banking', 'tour-operator' )        => $banking,
-			esc_html__( 'Cuisine', 'tour-operator' )        => $cuisine,
-			esc_html__( 'Climate', 'tour-operator' )        => $climate,
-			esc_html__( 'Transport', 'tour-operator' )      => $transport,
-			esc_html__( 'Dress', 'tour-operator' )          => $dress,
-			esc_html__( 'Health', 'tour-operator' )         => $health,
-			esc_html__( 'Safety', 'tour-operator' )         => $safety,
-			esc_html__( 'Visa', 'tour-operator' )           => $visa,
-			esc_html__( 'General', 'tour-operator' )        => $general,
+			esc_html__( 'Electricity', 'tour-operator' ) => $electricity,
+			esc_html__( 'Banking', 'tour-operator' )     => $banking,
+			esc_html__( 'Cuisine', 'tour-operator' )     => $cuisine,
+			esc_html__( 'Climate', 'tour-operator' )     => $climate,
+			esc_html__( 'Transport', 'tour-operator' )   => $transport,
+			esc_html__( 'Dress', 'tour-operator' )       => $dress,
+			esc_html__( 'Health', 'tour-operator' )      => $health,
+			esc_html__( 'Safety', 'tour-operator' )      => $safety,
+			esc_html__( 'Visa', 'tour-operator' )        => $visa,
+			esc_html__( 'General', 'tour-operator' )     => $general,
 		);
 		?>
 		<section id="travel-info" class="lsx-to-section <?php lsx_to_collapsible_class( 'destination', false ); ?>">
@@ -299,33 +299,33 @@ function lsx_to_destination_travel_info() {
 															$value = str_replace( '<br>', ' - ', $value );
 
 															// if ( str_word_count( $value, 0 ) > $limit_chars ) {
-															// 	$tokens       = array();
-															// 	$value_output = '';
-															// 	$has_more     = false;
-															// 	$count        = 0;
+															// $tokens       = array();
+															// $value_output = '';
+															// $has_more     = false;
+															// $count        = 0;
 
-															// 	preg_match_all( '/(<[^>]+>|[^<>\s]+)\s*/u', $value, $tokens );
+															// preg_match_all( '/(<[^>]+>|[^<>\s]+)\s*/u', $value, $tokens );
 
-															// 	foreach ( $tokens[0] as $token ) {
-															// 		if ( $count >= $limit_words ) {
-															// 			$value_output .= trim( $token );
-															// 			$has_more = true;
-															// 			break;
-															// 		}
-
-															// 		$count++;
-															// 		$value_output .= $token;
-															// 	}
-
-															// 	$value = trim( force_balance_tags( $value_output . '...' ) );
+															// foreach ( $tokens[0] as $token ) {
+															// if ( $count >= $limit_words ) {
+															// $value_output .= trim( $token );
+															// $has_more = true;
+															// break;
 															// }
 
-															if ( strlen( $value ) > $limit_chars ) {
-																$position = strpos( $value, ' ', $limit_chars );
-																$value_output = substr( $value, 0, $position );
+															// $count++;
+															// $value_output .= $token;
+															// }
 
-																$value = trim( force_balance_tags( $value_output . '...' ) );
-															}
+															// $value = trim( force_balance_tags( $value_output . '...' ) );
+															// }
+
+														if ( strlen( $value ) > $limit_chars ) {
+															$position     = strpos( $value, ' ', $limit_chars );
+															$value_output = substr( $value, 0, $position );
+
+															$value = trim( force_balance_tags( $value_output . '...' ) );
+														}
 
 															$value = trim( force_balance_tags( $value . $more_button ) );
 
@@ -387,7 +387,6 @@ function lsx_to_connected_countries( $before = '', $after = '', $echo = true ) {
 /**
  * Gets the current connected destination children or parent list for fast facts section
  *
- *
  * @package     tour-operator
  * @subpackage  template-tags
  * @category    connections
@@ -395,10 +394,12 @@ function lsx_to_connected_countries( $before = '', $after = '', $echo = true ) {
 
 function destination_children( $parent_id ) {
 	$theid      = get_the_ID();
-	$child      = new WP_Query( array(
-		'post_parent' => $theid,
-		'post_type'   => 'destination',
-	) );
+	$child      = new WP_Query(
+		array(
+			'post_parent' => $theid,
+			'post_type'   => 'destination',
+		)
+	);
 	$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
 	if ( $child->have_posts() ) {
 		$list_destinations       = array();
@@ -406,8 +407,8 @@ function destination_children( $parent_id ) {
 		echo '<span class="' . esc_attr( $meta_class ) . 'regions"><span class="lsx-to-meta-data-key">' . esc_html__( 'Regions', 'tour-operator' ) . ':</span>';
 		while ( $child->have_posts() ) {
 			$child->the_post();
-			$childtitle      = get_the_title();
-			$childlink       = get_the_permalink();
+			$childtitle          = get_the_title();
+			$childlink           = get_the_permalink();
 			$list_destinations[] = '<a href="' . esc_attr( $childlink ) . '"> ' . esc_attr( $childtitle ) . '</a>';
 		}
 		$final_list_destinations = implode( ', ', $list_destinations );
@@ -424,7 +425,6 @@ function destination_children( $parent_id ) {
 
 /**
  * Gets the current best months to visit
- *
  *
  * @package     tour-operator
  * @subpackage  template-tags

@@ -206,9 +206,9 @@ if ( ! isset( tour_operator()->options['display']['maps_disable'] ) && empty( to
 		'show_size'  => false,
 	);
 	$metabox['fields'][] = array(
-		'id'        => 'itinerary_kml',
-		'name'      => esc_html__( 'Itinerary KML File', 'tour-operator' ),
-		'type'      => 'file',
+		'id'         => 'itinerary_kml',
+		'name'       => esc_html__( 'Itinerary KML File', 'tour-operator' ),
+		'type'       => 'file',
 		'repeatable' => false,
 		'show_size'  => false,
 	);

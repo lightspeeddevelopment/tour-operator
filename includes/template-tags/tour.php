@@ -19,11 +19,11 @@ function lsx_to_tour_posts() {
 	global $lsx_to_archive;
 
 	$args = array(
-		'from'      => 'post',
-		'to'        => 'tour',
-		'column'    => '3',
-		'before'    => '<section id="posts" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-posts' ) . '>' . esc_html__( 'Featured Posts', 'tour-operator' ) . '</h2><div id="collapse-posts" class="collapse in"><div class="collapse-inner">',
-		'after'     => '</div></div></section>',
+		'from'   => 'post',
+		'to'     => 'tour',
+		'column' => '3',
+		'before' => '<section id="posts" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-posts' ) . '>' . esc_html__( 'Featured Posts', 'tour-operator' ) . '</h2><div id="collapse-posts" class="collapse in"><div class="collapse-inner">',
+		'after'  => '</div></div></section>',
 	);
 
 	lsx_to_connected_panel_query( $args );
@@ -153,7 +153,7 @@ function lsx_to_end_point( $before = '', $after = '', $echo = true ) {
  * @category    tour
  */
 function lsx_to_included_block() {
-	$tour_included = lsx_to_included( '', '', false );
+	$tour_included     = lsx_to_included( '', '', false );
 	$tour_not_included = lsx_to_not_included( '', '', false );
 
 	if ( null !== $tour_included || null !== $tour_not_included ) {
@@ -162,7 +162,7 @@ function lsx_to_included_block() {
 		if ( ( null === $tour_included && null !== $tour_not_included ) || ( null !== $tour_included && null === $tour_not_included ) ) {
 			$class = 'col-xs-12';
 		}
-	?>
+		?>
 		<section id="included-excluded" class="lsx-to-section <?php lsx_to_collapsible_class( 'tour', false ); ?>">
 			<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title hidden-lg" <?php lsx_to_collapsible_attributes_not_post( 'collapse-included-excluded' ); ?>><?php esc_html_e( 'Included / Not Included', 'tour-operator' ); ?></h2>
 
@@ -176,10 +176,10 @@ function lsx_to_included_block() {
 									<?php echo wp_kses_post( apply_filters( 'the_content', wpautop( $tour_included ) ) ); ?>
 								</div>
 							</div>
-						<?php 
-                        }
-						if ( null !== $tour_not_included ) { 
-                        ?>
+							<?php
+						}
+						if ( null !== $tour_not_included ) {
+							?>
 							<div class="<?php echo esc_attr( $class ); ?> not-included">
 								<h2 class="lsx-to-section-title lsx-to-section-title-small"><?php esc_html_e( 'Excluded', 'tour-operator' ); ?></h2>
 								<div class="entry-content">
@@ -191,7 +191,7 @@ function lsx_to_included_block() {
 				</div>
 			</div>
 		</section>
-	<?php
+		<?php
 	}
 }
 
@@ -238,30 +238,30 @@ function lsx_to_best_time_to_visit( $before = '', $after = '', $echo = true ) {
 
 	if ( false !== $best_time_to_visit && '' !== $best_time_to_visit && is_array( $best_time_to_visit ) && ! empty( $best_time_to_visit ) ) {
 		$this_year = array(
-			'january' => esc_html__( 'January', 'tour-operator' ),
-			'february' => esc_html__( 'February', 'tour-operator' ),
-			'march' => esc_html__( 'March', 'tour-operator' ),
-			'april' => esc_html__( 'April', 'tour-operator' ),
-			'may' => esc_html__( 'May', 'tour-operator' ),
-			'june' => esc_html__( 'June', 'tour-operator' ),
-			'july' => esc_html__( 'July', 'tour-operator' ),
-			'august' => esc_html__( 'August', 'tour-operator' ),
+			'january'   => esc_html__( 'January', 'tour-operator' ),
+			'february'  => esc_html__( 'February', 'tour-operator' ),
+			'march'     => esc_html__( 'March', 'tour-operator' ),
+			'april'     => esc_html__( 'April', 'tour-operator' ),
+			'may'       => esc_html__( 'May', 'tour-operator' ),
+			'june'      => esc_html__( 'June', 'tour-operator' ),
+			'july'      => esc_html__( 'July', 'tour-operator' ),
+			'august'    => esc_html__( 'August', 'tour-operator' ),
 			'september' => esc_html__( 'September', 'tour-operator' ),
-			'october' => esc_html__( 'October', 'tour-operator' ),
-			'november' => esc_html__( 'November', 'tour-operator' ),
-			'december' => esc_html__( 'December', 'tour-operator ' ),
+			'october'   => esc_html__( 'October', 'tour-operator' ),
+			'november'  => esc_html__( 'November', 'tour-operator' ),
+			'december'  => esc_html__( 'December', 'tour-operator ' ),
 		);
 
 		foreach ( $this_year as $month => $label ) {
-			$checked = '';
+			$checked       = '';
 			$checked_class = '';
 
 			if ( in_array( $month, $best_time_to_visit ) ) {
-				$checked = '<i class="fa fa-check-circle" aria-hidden="true"></i>';
+				$checked       = '<i class="fa fa-check-circle" aria-hidden="true"></i>';
 				$checked_class = 'lsx-to-month-check';
 			}
 
-			$shortname = str_split( $label, 3 );
+			$shortname    = str_split( $label, 3 );
 			$best_times[] = '<div class="col-xs-2 col-sm-1 lsx-to-month ' . $checked_class . '"><small>' . $shortname[0] . '</small>' . $checked . '</div>';
 		};
 

@@ -33,12 +33,12 @@ if ( 1 !== $lsx_to_archive ) {
 	<?php } elseif ( is_search() || empty( tour_operator()->options[ get_post_type() ]['disable_entry_text'] ) ) { ?>
 
 		<div <?php lsx_to_entry_class( 'entry-content' ); ?>>
-                                       <?php
-			lsx_to_entry_content_top();
-			the_excerpt();
-			lsx_to_entry_content_bottom();
-		?>
-        </div>
+									   <?php
+										lsx_to_entry_content_top();
+										the_excerpt();
+										lsx_to_entry_content_bottom();
+										?>
+		</div>
 
 	<?php } ?>
 
@@ -46,5 +46,5 @@ if ( 1 !== $lsx_to_archive ) {
 
 </article>
 
-<?php 
+<?php
 lsx_entry_after();

@@ -73,16 +73,22 @@ class Pages extends \lsx\Frame {
 	public function create_pages() {
 		do_action( 'lsx_to_register_menu_pages' );
 		if ( ! empty( $this->pages['main'] ) ) {
-			array_map( array(
-				$this,
-				'create_main_page',
-			), $this->pages['main'] );
+			array_map(
+				array(
+					$this,
+					'create_main_page',
+				),
+				$this->pages['main']
+			);
 		}
 		if ( ! empty( $this->pages['sub'] ) ) {
-			array_map( array(
-				$this,
-				'create_sub_pages',
-			), $this->pages['sub'] );
+			array_map(
+				array(
+					$this,
+					'create_sub_pages',
+				),
+				$this->pages['sub']
+			);
 		}
 	}
 
@@ -121,16 +127,19 @@ class Pages extends \lsx\Frame {
 	 * @param array  $config The Page config arguments.
 	 */
 	public function register_object( $slug, $config ) {
-		$config = array_merge( array(
-			'page_title'    => '',
-			'menu_title'    => '',
-			'capability'    => 'edit_options',
-			'callback'      => '__return_null',
-			'icon'          => '',
-			'menu_position' => null,
-			'slug'          => $slug,
-			'parent_slug'   => null,
-		), $config );
+		$config = array_merge(
+			array(
+				'page_title'    => '',
+				'menu_title'    => '',
+				'capability'    => 'edit_options',
+				'callback'      => '__return_null',
+				'icon'          => '',
+				'menu_position' => null,
+				'slug'          => $slug,
+				'parent_slug'   => null,
+			),
+			$config
+		);
 		if ( is_null( $config['parent_slug'] ) ) {
 			$this->pages['main'][] = $config['slug'];
 		} else {

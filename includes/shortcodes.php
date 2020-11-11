@@ -44,37 +44,41 @@ add_shortcode( 'lsx_to_taxonomy_widget', 'lsx_to_taxonomy_widget_shortcode' );
  * TO Archive Shortcode.
  */
 function lsx_to_archive_shortcode( $atts ) {
-	$atts = shortcode_atts( array(
-		'layout' => 'list',
-		'post_type' => 'tour',
-		'orderby' => 'date',
-		'order' => 'DESC',
-		'limit' => 10,
-		'include' => '',
-		'featured' => false,
-	), $atts, 'lsx_to_archive' );
+	$atts = shortcode_atts(
+		array(
+			'layout'    => 'list',
+			'post_type' => 'tour',
+			'orderby'   => 'date',
+			'order'     => 'DESC',
+			'limit'     => 10,
+			'include'   => '',
+			'featured'  => false,
+		),
+		$atts,
+		'lsx_to_archive'
+	);
 
 	if ( ! empty( $include ) ) {
 		$include = explode( ',', $include );
 
 		$args = array(
-			'post_type' => $atts['post_type'],
+			'post_type'      => $atts['post_type'],
 			'posts_per_page' => $atts['limit'],
-			'post__in' => $atts['include'],
-			'orderby' => 'post__in',
-			'order' => $atts['order'],
+			'post__in'       => $atts['include'],
+			'orderby'        => 'post__in',
+			'order'          => $atts['order'],
 		);
 	} else {
 		$args = array(
-			'post_type' => $atts['post_type'],
+			'post_type'      => $atts['post_type'],
 			'posts_per_page' => $atts['limit'],
-			'orderby' => $atts['orderby'],
-			'order' => $atts['order'],
+			'orderby'        => $atts['orderby'],
+			'order'          => $atts['order'],
 		);
 	}
 
 	if ( ! empty( $featured ) ) {
-		$args['meta_key'] = 'featured';
+		$args['meta_key']   = 'featured';
 		$args['meta_value'] = 1;
 	}
 
@@ -93,14 +97,14 @@ function lsx_to_archive_shortcode( $atts ) {
 			<?php
 				global $post, $lsx_to_archive;
 
-				$temp = $lsx_to_archive;
+				$temp           = $lsx_to_archive;
 				$lsx_to_archive = 1;
 			?>
 
-			<?php 
-            while ( $query->have_posts() ) :
-$query->the_post(); 
-?>
+			<?php
+			while ( $query->have_posts() ) :
+				$query->the_post();
+				?>
 
 				<div class="<?php echo esc_attr( lsx_to_archive_class( 'lsx-to-archive-item' ) ); ?>">
 					<?php lsx_to_content( 'content', get_post_type() ); ?>
@@ -115,8 +119,8 @@ $query->the_post();
 
 		</div>
 
-	<?php 
-    endif;
+		<?php
+	endif;
 
 	$content = ob_get_clean();
 	$content = preg_replace( '/<!--[^>]+-->/', '', $content );

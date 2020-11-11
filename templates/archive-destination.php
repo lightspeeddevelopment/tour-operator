@@ -21,35 +21,35 @@ get_header(); ?>
 			<?php if ( have_posts() ) : ?>
 
 				<?php
-					$header_before = '';
+					$header_before            = '';
 					$group_items_by_continent = false;
 
-					if ( isset( tour_operator()->options['destination'] ) && isset( tour_operator()->options['destination']['group_items_by_continent'] ) ) {
-						$group_items_by_continent = true;
-					}
+				if ( isset( tour_operator()->options['destination'] ) && isset( tour_operator()->options['destination']['group_items_by_continent'] ) ) {
+					$group_items_by_continent = true;
+				}
 
 					$count = 0;
 				?>
 
-				<?php 
-                while ( have_posts() ) :
-the_post(); 
-?>
+				<?php
+				while ( have_posts() ) :
+					the_post();
+					?>
 
 					<?php
-						if ( true === $group_items_by_continent ) {
-							$header_current = get_the_terms( get_the_id(), 'continent' );
-							$header_html = '';
+					if ( true === $group_items_by_continent ) {
+						$header_current = get_the_terms( get_the_id(), 'continent' );
+						$header_html    = '';
 
-							if ( ! is_wp_error( $header_current ) && is_array( $header_current ) && ! empty( $header_current ) ) {
-								$header_current = $header_current[0]->name;
+						if ( ! is_wp_error( $header_current ) && is_array( $header_current ) && ! empty( $header_current ) ) {
+							$header_current = $header_current[0]->name;
 
-								if ( $header_before !== $header_current ) {
-									$header_html = '<h3 class="lsx-to-archive-items-separator lsx-title">' . $header_current . '</h3>';
-									$header_before = $header_current;
-								}
+							if ( $header_before !== $header_current ) {
+								$header_html   = '<h3 class="lsx-to-archive-items-separator lsx-title">' . $header_current . '</h3>';
+								$header_before = $header_current;
 							}
 						}
+					}
 
 						$count++;
 					?>
@@ -92,7 +92,7 @@ the_post();
 
 	<?php lsx_content_wrap_after(); ?>
 
-<?php //get_sidebar(); ?>
+<?php // get_sidebar(); ?>
 
-<?php 
+<?php
 get_footer();

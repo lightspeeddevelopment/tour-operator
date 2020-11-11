@@ -32,7 +32,7 @@ $metabox['fields'][] = array(
 	'name'    => esc_html__( 'Sticky weight', 'tour-operator' ),
 	'type'    => 'text',
 	'default' => '',
-	//'desc'    => esc_html__( 'Stick an item on the archive page. Add a number to order the item.', 'tour-operator' ),
+	// 'desc'    => esc_html__( 'Stick an item on the archive page. Add a number to order the item.', 'tour-operator' ),
 );
 
 $metabox['fields'][] = array(
@@ -227,7 +227,7 @@ if ( ! isset( tour_operator()->options['display']['maps_disable'] ) && empty( to
 		'name' => esc_html__( 'Disable Auto Zoom', 'tour-operator' ),
 		'type' => 'checkbox',
 	);
-	$google_api_key = '';
+	$google_api_key      = '';
 	if ( isset( tour_operator()->options['api']['googlemaps_key'] ) && ! empty( tour_operator()->options['api']['googlemaps_key'] ) ) {
 		$google_api_key = tour_operator()->options['api']['googlemaps_key'];
 	}

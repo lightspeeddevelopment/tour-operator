@@ -8,10 +8,12 @@
 
 get_header();
 
-$continents = new \WP_Term_Query( array(
-	'taxonomy' => 'continent',
-	'hide_empty' => false,
-) );
+$continents = new \WP_Term_Query(
+	array(
+		'taxonomy'   => 'continent',
+		'hide_empty' => false,
+	)
+);
 
 global $continent;
 ?>
@@ -52,7 +54,7 @@ global $continent;
 
 	<?php lsx_content_wrap_after(); ?>
 
-<?php //get_sidebar(); ?>
+<?php // get_sidebar(); ?>
 
-<?php 
+<?php
 get_footer();

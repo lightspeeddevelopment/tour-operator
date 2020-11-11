@@ -103,7 +103,7 @@ class Itinerary_Query {
 		$this->itineraries = get_post_meta( $this->post_id, 'itinerary', false );
 		if ( is_array( $this->itineraries ) && ! empty( $this->itineraries ) ) {
 			$this->has_itinerary = true;
-			$this->count = count( $this->itineraries );
+			$this->count         = count( $this->itineraries );
 		}
 		add_filter( 'lsx_to_itinerary_thumbnail_src', array( $this, 'departure_day_image' ), 10, 3 );
 	}
@@ -214,7 +214,7 @@ class Itinerary_Query {
 			$images_left = array_diff( $this->current_attachments[ $accommodation_id ], $this->images_used );
 			if ( is_array( $images_left ) && ! empty( $images_left ) ) {
 				$images_left = array_values( $images_left );
-				$return = array_shift( $images_left );
+				$return      = array_shift( $images_left );
 			}
 		}
 		return $return;

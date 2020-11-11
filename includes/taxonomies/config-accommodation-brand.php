@@ -10,9 +10,9 @@
  */
 
 $taxonomy = array(
-	'object_types' => 'accommodation',
+	'object_types'  => 'accommodation',
 	'menu_position' => 33,
-	'args'         => array(
+	'args'          => array(
 		'hierarchical'        => true,
 		'labels'              => array(
 			'name'              => esc_html__( 'Brands', 'tour-operator' ),
