@@ -61,6 +61,4 @@
     <rule ref="Generic.PHP.Syntax"/>
 	
     <rule ref="WordPress.WP.DeprecatedFunctions"/>
-	
-	<rule ref="PHPCompatibilityWP"/>
 </ruleset>
