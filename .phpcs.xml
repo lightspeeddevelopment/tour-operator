@@ -37,4 +37,13 @@
 	<config name="testVersion" value="7.0-" />
 
 	<rule ref="WordPress" />
+
+
+
+	<!-- Not interested in whitespace issues in JS and CSS files at the moment -->
+	<rule ref="Squiz.Commenting">
+		<exclude-pattern>*\.css</exclude-pattern>
+		<exclude-pattern>*\.js</exclude-pattern>
+		<exclude-pattern>*\.php</exclude-pattern>
+	</rule>
 </ruleset>
